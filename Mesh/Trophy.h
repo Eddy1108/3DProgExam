@@ -7,7 +7,7 @@ class Trophy : public VisualObject
 {
 public:
 
-	Trophy(Shader& shader, float x, float y, float z);
+	Trophy(Shader& shader, float x, float y, float z, bool red);
 	~Trophy();
 
 
@@ -15,6 +15,8 @@ public:
 	void init() override;
 	void draw() override;
 	bool activate(float f = 0) override;
+
+	bool bIsRed{ true };
 
 private:
 	std::vector<Trophy*> mCollection;

@@ -181,11 +181,13 @@ void Scene::drawCollision()
             if ((*it).second->mBShape->mType == CollisionShape::Type::AABB)
             {
 
-            DrawAABB(
-                dynamic_cast<AABB*>((*it).second->mBShape)->mPosition,
-                dynamic_cast<AABB*>((*it).second->mBShape)->mExtent
-              );
-
+                if ((*it).second->mBShape->bDrawBox)
+                {
+                    DrawAABB(
+                        dynamic_cast<AABB*>((*it).second->mBShape)->mPosition,
+                        dynamic_cast<AABB*>((*it).second->mBShape)->mExtent
+                    );
+                }
             };
         }
     }
@@ -199,20 +201,26 @@ void Scene::drawCollision()
 void Scene::checkCollision()
 {
     glm::vec2 playerPos = mMap3["mia"]->getPosition2D();
+
+    //Check Collision for Player
     auto subtre = mQuadTre.find(playerPos);
     for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
     {
-        if ((*it)->mBShape && (*it)->getName() == "Trophy" && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
+        if ((*it)->mBShape && dynamic_cast<Trophy*>(*it)->bIsRed && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
         {
-            (*it)->activate();
+            
+            if ((*it)->activate())
+            {
+                dynamic_cast<Player*>(mMap3["mia"])->CollectItem();
+            }
+            
         }
-
-        //std::cout << "POS: "<< (*it)->getName() << "     :" << (*it)->getPosition2D().x << ", " << (*it)->getPosition2D().y << std::endl;
-        
     }
 
-    //std::cout << "A: " << subtre->m_a.first << ", " << subtre->m_a.second << "   B: " << subtre->m_c.first << ", " << subtre->m_c.second << std::endl;
-    //std::cout << subtre->m_Objects.size() << std::endl;
+    //Check Collision for NPC
+
+
+    //Check Collision for BOMB
 
 }
 

@@ -18,8 +18,50 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(mLight);
     mLight->setName("Sun");
 
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, 8.f, 0.f));
-    temp->setName("Trophy");
+    //mObjects.push_back(temp = new BezierCurve(*mShaderPrograms["plain"]));
+    //temp->setName("Bezier");
+
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, 8.f, 2.f, true));
+    temp->setName("RedTrophy0");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 20.f, 10.f, 2.f, true));
+    temp->setName("RedTrophy1");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -12.f, 22.f, 2.f, true));
+    temp->setName("RedTrophy2");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -15.f, -5.f, 2.f, true));
+    temp->setName("RedTrophy3");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 18.f, -8.f, 2.f, true));
+    temp->setName("RedTrophy4");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -2.f, -30.f, 2.f, true));
+    temp->setName("RedTrophy5");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -26.f, 4.f, 2.f, true));
+    temp->setName("RedTrophy6");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, -15.f, 2.f, true));
+    temp->setName("RedTrophy7");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 15.f, 23.f, 2.f, true));
+    temp->setName("RedTrophy8");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -17.f, -20.f, 2.f, true));
+    temp->setName("RedTrophy9");
+
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 0.f, 8.f, 2.f, false));
+    temp->setName("BlueTrophy0");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -9.f, 15.f, 2.f, false));
+    temp->setName("BlueTrophy1");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 25.f, -22.f, 2.f, false));
+    temp->setName("BlueTrophy2");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 10.f, -27.f, 2.f, false));
+    temp->setName("BlueTrophy3");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 25.f, 20.f, 2.f, false));
+    temp->setName("BlueTrophy4");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -6.f, -18.f, 2.f, false));
+    temp->setName("BlueTrophy5");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -25.f, -15.f, 2.f, false));
+    temp->setName("BlueTrophy6");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -30.f, 10.f, 2.f, false));
+    temp->setName("BlueTrophy7");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -32.f, 25.f, 2.f, false));
+    temp->setName("BlueTrophy8");
+    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 32.f, 2.f, 2.f, false));
+    temp->setName("BlueTrophy9");
 
         //Obj loading tests
     //mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/Sun.obj", ""));

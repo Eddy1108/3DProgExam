@@ -1,89 +1,99 @@
 #include "Trophy.h"
 
-Trophy::Trophy(Shader& shader, float x, float y, float z)
+Trophy::Trophy(Shader& shader, float x, float y, float z, bool red)
 	:VisualObject(shader)
 {
-	//FRONT
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,1,0,0 });
 
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,1,0,0 });
+	glm::vec3 color{ 1.f };
+
+	if (red)
+		color = glm::vec3{ 1.f,0.f,0.f };
+	else
+		color = glm::vec3{ 0.f,0.f,1.f };
+
+
+
+	//FRONT
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,color.x,color.y, color.z });
+
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,color.x,color.y, color.z });
 
 	//RIGHT
-	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,color.x,color.y, color.z });
 
-	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,color.x,color.y, color.z });
 
 	//BACK
-	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,color.x,color.y, color.z });
 
-	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,color.x,color.y, color.z });
 
 	//LEFT
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,color.x,color.y, color.z });
 
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,1,0,0 });
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,color.x,color.y, color.z });
 
 	//TOP FRONT
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,color.x,color.y, color.z });
 	mVertices.push_back(Vertex{ 0.f,0.f,0.75f,1,1,0 });
-	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,color.x,color.y, color.z });
 
 	//TOP RIGHT
-	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,0.25f,color.x,color.y, color.z });
 	mVertices.push_back(Vertex{ 0.f,0.f,0.75f,1,1,0 });
-	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,color.x,color.y, color.z });
 
 	//TOP BACK
-	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,0.25f,color.x,color.y, color.z });
 	mVertices.push_back(Vertex{ 0.f,0.f,0.75f,1,1,0 });
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,color.x,color.y, color.z });
 
 	//TOP LEFT
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,0.25f,color.x,color.y, color.z });
 	mVertices.push_back(Vertex{ 0.f,0.f,0.75f,1,1,0 });
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,0.25f,color.x,color.y, color.z });
 
 	//BOTTOM FRONT
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
 	mVertices.push_back(Vertex{ 0.f,0.f,-0.75f,1,1,0 });
-	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,color.x,color.y, color.z });
 
 	//BOTTOM RIGHT
-	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,0.25f,-0.25f,color.x,color.y, color.z });
 	mVertices.push_back(Vertex{ 0.f,0.f,-0.75f,1,1,0 });
-	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,color.x,color.y, color.z });
 
 	//BOTTOM BACK
-	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,0.25f,-0.25f,color.x,color.y, color.z });
 	mVertices.push_back(Vertex{ 0.f,0.f,-0.75f,1,1,0 });
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
 
 	//BOTTOM LEFT
-	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ 0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
 	mVertices.push_back(Vertex{ 0.f,0.f,-0.75f,1,1,0 });
-	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,1,0,0 });
+	mVertices.push_back(Vertex{ -0.25f,-0.25f,-0.25f,color.x,color.y, color.z });
 
 	mMatrix = glm::mat4(1.0f);
 
 	mBShape = new AABB();
-
 	move(x, y, z);
+	bIsRed = red;
 }
 
 
@@ -148,9 +158,12 @@ void Trophy::draw()
 
 bool Trophy::activate(float f)
 {
-	//delete this;
-	bDraw = false;
-	std::cout << "Activated!!!!!!!!!" << std::endl;
-
-	return true;
+	if (bDraw)
+	{
+		//delete this;
+		bDraw = false;
+		mBShape->bDrawBox = false;
+		return true;
+	}
+	return bDraw;
 }

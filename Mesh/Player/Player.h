@@ -13,12 +13,13 @@ public:
 	void move(float x, float y, float z) override;
 
 	void updateFakeCam();
+	void CollectItem();
 
 	glm::vec3 mForward{ 0.f, 1.f, 0.f };
 	glm::vec3 mUp{ 0.f,0.f,1.f };
 
 	float mSpeed = 0.2f;
-
+	int WinState{ 0 };	//0 = Playing, 1 = WIN, 2 = LOSE
 
 	ObjLoader* PlayerModel{ nullptr };
 	ObjLoader* CameraModel{ nullptr };
@@ -26,5 +27,7 @@ public:
 
 private:
 	float rotate{ 0 };
+
+	int mItems{ 0 };
 };
 

@@ -3,16 +3,21 @@
 BezierCurve::BezierCurve(Shader& shader)
 	:VisualObject(shader)
 {
-	mControlPoints.push_back(glm::vec3{ 0.f,0.f,0.f });
-	mControlPoints.push_back(glm::vec3{ 1.f,3.f,0.f });
-	mControlPoints.push_back(glm::vec3{ 4.f,3.f,0.f });
-	mControlPoints.push_back(glm::vec3{ 5.f,0.f,0.f });
+	//mControlPoints.push_back(glm::vec3{ 0.f,0.f,0.f });
+	//mControlPoints.push_back(glm::vec3{ 1.f,3.f,0.f });
+	//mControlPoints.push_back(glm::vec3{ 4.f,3.f,0.f });
+	//mControlPoints.push_back(glm::vec3{ 5.f,0.f,0.f });
 
 	//Alternate Control points
 	//mControlPoints.push_back(glm::vec3{ 0.f, 0.f,0.f });
 	//mControlPoints.push_back(glm::vec3{ 1.f,-3.f,1.f });
 	//mControlPoints.push_back(glm::vec3{ 3.f,-2.f,0.f });
 	//mControlPoints.push_back(glm::vec3{ 2.f, 0.f,0.f });
+
+	mControlPoints.push_back(glm::vec3{ -20.f,-20.f,7.f });
+	mControlPoints.push_back(glm::vec3{ -20.f,20.f,7.f });
+	mControlPoints.push_back(glm::vec3{ 20.f,-20.f,7.f });
+	mControlPoints.push_back(glm::vec3{ 20.f,20.f,7.f });
 
     //glm::vec3 color{ 1.f, 1.f, 1.f };
 

@@ -18,6 +18,7 @@ public:
 	static bool overlap(AABB* a, AABB* b);
 
 	glm::vec3 mPosition{ 0.f, 0.f, 0.f };
+	bool bDrawBox{ true };
 };
 
 class AABB : public CollisionShape
@@ -27,5 +28,7 @@ public:
 	virtual bool overlap(CollisionShape* shape) override;
 
 	glm::vec3 mExtent{ 1.f };
+
+	
 };
 

@@ -154,3 +154,14 @@ void Player::updateFakeCam()
 	CameraModel->mMatrix = glm::rotate(CameraModel->mMatrix, glm::radians(rotate), glm::vec3{ 0.f,0.f,1.f });
 
 }
+
+void Player::CollectItem()
+{
+	++mItems;
+	std::cout << "Items: " << mItems << std::endl;
+
+	if (mItems == 10)
+	{
+		WinState = 1;
+	}
+}
