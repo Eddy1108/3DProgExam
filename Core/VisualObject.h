@@ -38,8 +38,13 @@ public:
 
 	CollisionShape* mBShape{ nullptr };
 
+	glm::vec3 mCameraOffset{ 1.f };
+
 	std::vector<Vertex> mVertices;
 	std::vector<GLint> mIndices;
+
+	glm::vec3 mPosition;
+
 protected:
 
 
@@ -55,13 +60,11 @@ protected:
 
 	GLint mMatrixUniform{ 0 };
 	
-	//QMatrix4x4 mPosition;
-	glm::vec3 mPosition;
+	//glm::vec3 mPosition;
+
 	glm::mat4 mRotation;
 	glm::mat4 mScale;
 	glm::vec3 mVelocity;
 
 	std::string mName;
-
-	//Texture* mTexture[2]{ nullptr };
 };

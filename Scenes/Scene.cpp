@@ -35,6 +35,7 @@ void Scene::init()
     {
         (*it).second->init();
     }
+
 }
 
 void Scene::draw()
@@ -59,11 +60,9 @@ void Scene::draw()
         mMap3["mia"]->move(0.1f, 0.1f, 0.1f);
 
         //Move Camera
-        glm::vec3 playPos{ mMap3["mia"]->getPosition3D().x, mMap3["mia"]->getPosition3D().y, mMap3["mia"]->getPosition3D().z };
-        
         mCamera->lookAt(
-            glm::vec3{ playPos.x, playPos.y - 10, playPos.z + 10},
-            glm::vec3{ playPos.x, playPos.y, playPos.z },
+            mMap3["mia"]->mCameraOffset,
+            mMap3["mia"]->getPosition3D(),
             glm::vec3{ 0.0f, 0.0f, 1.0f }
         );
 
@@ -88,11 +87,9 @@ void Scene::draw()
         mCamera->update();
 
         //Move Camera
-        glm::vec3 playPos{ mMap3["mia"]->getPosition3D().x, mMap3["mia"]->getPosition3D().y, mMap3["mia"]->getPosition3D().z };
-
         mCamera->lookAt(
-            glm::vec3{ playPos.x, playPos.y - 10, playPos.z + 10 },
-            glm::vec3{ playPos.x, playPos.y, playPos.z },
+            mMap3["mia"]->mCameraOffset,
+            mMap3["mia"]->getPosition3D(),
             glm::vec3{ 0.0f, 0.0f, 1.0f }
         );
 
@@ -119,11 +116,9 @@ void Scene::draw()
 
 
         //Move Camera
-        glm::vec3 playPos{ mMap3["mia"]->getPosition3D().x, mMap3["mia"]->getPosition3D().y, mMap3["mia"]->getPosition3D().z };
-
         mCamera->lookAt(
-            glm::vec3{ playPos.x, playPos.y - 10, playPos.z + 10 },
-            glm::vec3{ playPos.x, playPos.y, playPos.z },
+            mMap3["mia"]->mCameraOffset,
+            mMap3["mia"]->getPosition3D(),
             glm::vec3{ 0.0f, 0.0f, 1.0f }
         );
         
@@ -169,6 +164,9 @@ void Scene::draw()
     checkCollision();
 
     drawCollision();
+
+    mCamera->bFollowPlayer = bPlayMode;
+    dynamic_cast<Player*>(mMap3["mia"])->bDrawCam = !bPlayMode;
 }
 
 void Scene::drawCollision()

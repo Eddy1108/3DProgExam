@@ -18,18 +18,19 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(mLight);
     mLight->setName("Sun");
 
-    //Obj loading tests
-    //mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/Sun.obj", ""));
-
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, 8.f, 0.f));
     temp->setName("Trophy");
 
+        //Obj loading tests
+    //mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/Sun.obj", ""));
 
-        //Textured Objects
+
+
+        ///Textured Objects
     //Use mObjects2!
 
     
-        //Phong Objects (+ Texture)
+        ///Phong Objects (+ Texture)
     //Use mObjects3!
 
         //Task 2:
@@ -42,7 +43,7 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mHeightmap->setName("Heightmap");
     mInteract->mHeightmap = mHeightmap;
 
-        //Billboards
+        ///???
     //Use mObjects4!
 
 

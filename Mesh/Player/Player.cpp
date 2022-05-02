@@ -9,7 +9,7 @@ Player::Player(Shader& shader)
 	: InteractiveObject(shader)
 {
 	PlayerModel = new ObjLoader(shader, "../3DProgExam/Assets/models/crew.obj", "../3DProgExam/Assets/tex/pew.bmp");
-
+	CameraModel = new ObjLoader(shader, "../3DProgExam/Assets/models/camera2.obj", "../3DProgExam/Assets/tex/gray.bmp");
 
 	mBShape = new AABB();
 }
@@ -75,17 +75,26 @@ void Player::init()
 	glBindVertexArray(0);
 
 	PlayerModel->init();
+	CameraModel->init();
+
 }
 
 void Player::draw()
 {
-
 	PlayerModel->draw();
+	
+
+	if (bDrawCam)
+	{
+		updateFakeCam();
+		CameraModel->draw();
+	}
+
 }
 
 void Player::move(float x, float y, float z)
 {
-	float rotate{ 0 };
+	rotate = 0;
 
 	if (WMove) mPosition += mSpeed * mForward;
 
@@ -106,7 +115,6 @@ void Player::move(float x, float y, float z)
 	
 
 
-	//mMatrix = glm::translate(mMatrix, -pos);
 	mMatrix = glm::rotate(mMatrix, glm::radians(rotate), glm::vec3{ 0.f,0.f,1.f });
 
 	mMatrix[3].x = mPosition.x;
@@ -135,4 +143,14 @@ void Player::move(float x, float y, float z)
 		mBShape->mPosition = mPosition;
 	}
 	PlayerModel->mMatrix = mMatrix;
+
+	mCameraOffset = glm::vec3{ mPosition.x + -mForward.x * 10.f, mPosition.y + -mForward.y * 10.f, mPosition.z + 10.f };
+}
+
+void Player::updateFakeCam()
+{
+
+	CameraModel->mMatrix[3].x = mCameraOffset.x; CameraModel->mMatrix[3].y = mCameraOffset.y; CameraModel->mMatrix[3].z = mCameraOffset.z;
+	CameraModel->mMatrix = glm::rotate(CameraModel->mMatrix, glm::radians(rotate), glm::vec3{ 0.f,0.f,1.f });
+
 }

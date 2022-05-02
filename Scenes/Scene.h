@@ -6,6 +6,7 @@
 #include "glm/gtc/type_ptr.hpp"
 
 #include "mesh/Player/InteractiveObject.h"
+#include "Mesh/Player/Player.h"
 #include "Core/XYZ.h"
 #include "mesh/TriangleSurface.h"
 #include "Core/Camera.h"
@@ -28,6 +29,9 @@ public:
 	virtual void draw();
 	virtual void drawCollision();
 	virtual void checkCollision();
+
+	void DrawAABB(glm::vec3 position, glm::vec3 extent);
+
 
 	//Plain Objects
 	std::vector<VisualObject*> mObjects;
@@ -55,6 +59,7 @@ public:
 	//Shader Storage
 	std::unordered_map<std::string, Shader*> mShaderPrograms;
 
-	void DrawAABB(glm::vec3 position, glm::vec3 extent);
+	bool bPlayMode{ false };
+	
 };
 
