@@ -7,12 +7,12 @@ in vec2 UV;       //for textures
 
 uniform sampler2D textureSampler;
 
-uniform float ambientStrengt = 0.3;
+uniform float ambientStrengt = 0.1;
 
 uniform vec3 lightPosition;
-uniform vec3 lightColor = vec3(1., 1., 1.);  //vec3(.3, .3, 1.);  //blueish
-uniform float lightStrengt = 0.5;
-uniform float specularStrength = 0.6;
+uniform vec3 lightColor = vec3(.9, .9, .3);  //vec3(.3, .3, 1.);  //blueish
+uniform float lightStrengt = 0.9;
+uniform float specularStrength = 0.9;
 uniform int specularExponent = 32;
 
 uniform vec3 objectColor = vec3(1.0, 1.0, 1.0); //white

@@ -38,13 +38,15 @@ public:
 
 	CollisionShape* mBShape{ nullptr };
 
+	std::vector<Vertex> mVertices;
+	std::vector<GLint> mIndices;
 protected:
+
 
 	//void loadTexture(std::string dir);
 	//void useTexture();
 
-	std::vector<Vertex> mVertices;
-	std::vector<GLint> mIndices;
+
 
 	GLuint mVAO{ 0 };
 	GLuint mVBO{ 0 };

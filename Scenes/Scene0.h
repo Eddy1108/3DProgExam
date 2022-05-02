@@ -13,6 +13,7 @@
 
 #include "mesh/Triangle.h"
 #include "Light/Light.h"
+#include "Light/Sun.h"
 #include "mesh/Heightmap.h"
 #include "Mesh/Billboard.h"
 

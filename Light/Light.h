@@ -10,8 +10,8 @@ public:
     ///Light class with mesh and light parameters
     Light(Shader& shader);
     ~Light();
-    void init() override;
-    void draw() override;
+    virtual void init() override;
+    virtual void draw() override;
 
     GLfloat mAmbientStrenght{ 0.3f };
     glm::vec3 mAmbientColor{ 0.3f, 0.3f, 0.3f };  //Grey
