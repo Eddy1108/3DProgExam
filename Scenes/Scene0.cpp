@@ -14,18 +14,19 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(temp = new XYZ(*mShaderPrograms["plain"]));
     temp->setName("XYZ");
 
-    InteractiveObject* mInteract = new InteractiveObject(*mShaderPrograms["plain"]);
+    //InteractiveObject* mInteract = new InteractiveObject(*mShaderPrograms["plain"]);
+    //mObjects.push_back(mInteract);
+    //mInteract->setName("mia");
+
+    InteractiveObject* mInteract = new Player(*mShaderPrograms["plain"]);
     mObjects.push_back(mInteract);
     mInteract->setName("mia");
-
-    //mLight = new Light(*mShaderPrograms["plain"]);
-    //mObjects.push_back(mLight);
-    //mLight->setName("Light");
 
     mLight = new Sun(*mShaderPrograms["plain"]);
     mObjects.push_back(mLight);
     mLight->setName("Sun");
 
+    //Obj loading tests
     //mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/Sun.obj", ""));
 
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, 8.f, 0.f));
@@ -36,10 +37,10 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     //Use mObjects2!
 
     
-        //Phong Objects
+        //Phong Objects (+ Texture)
     //Use mObjects3!
 
-    //Task 2:
+        //Task 2:
     Heightmap* mHeightmap = new Heightmap(*mShaderPrograms["phong"]);
     mObjects3.push_back(mHeightmap);
     mHeightmap->setName("Heightmap");

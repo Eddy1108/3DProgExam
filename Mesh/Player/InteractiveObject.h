@@ -9,8 +9,8 @@ public:
 	InteractiveObject(Shader& shader);
 	~InteractiveObject();
 
-	void init() override;
-	void draw() override;
+	virtual void init() override;
+	virtual void draw() override;
 	void move(float x, float y, float z) override;
 
 

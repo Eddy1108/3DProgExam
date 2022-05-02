@@ -44,7 +44,7 @@ public:
 
 
 	//New camera stuff
-	bool bFollowPlayer{ false };
+	bool bFollowPlayer{ true };
 	float speed = 0.1f;
 	float sensitivity = 0.4f;
 	void TakeInput();

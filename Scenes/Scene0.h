@@ -16,6 +16,7 @@
 #include "Light/Sun.h"
 #include "mesh/Heightmap.h"
 #include "Mesh/Billboard.h"
+#include "Mesh/Player/Player.h"
 
 #include "Mesh/ObjLoader.h"
 #include "Mesh/SkyBox.h"

@@ -59,9 +59,11 @@ void Scene::draw()
         mMap["mia"]->move(0.1f, 0.1f, 0.1f);
 
         //Move Camera
+        glm::vec3 playPos{ mMap["mia"]->getPosition3D().x, mMap["mia"]->getPosition3D().y, mMap["mia"]->getPosition3D().z };
+        
         mCamera->lookAt(
-            glm::vec3{ mMap["mia"]->mx, mMap["mia"]->my - 10, mMap["mia"]->mz + 10 },
-            glm::vec3{ mMap["mia"]->mx, mMap["mia"]->my ,mMap["mia"]->mz },
+            glm::vec3{ playPos.x, playPos.y - 10, playPos.z + 10},
+            glm::vec3{ playPos.x, playPos.y, playPos.z },
             glm::vec3{ 0.0f, 0.0f, 1.0f }
         );
 
@@ -85,10 +87,12 @@ void Scene::draw()
         mCamera->init(tempPMatrix, tempVMatrix);
         mCamera->update();
 
+        //Move Camera
+        glm::vec3 playPos{ mMap["mia"]->getPosition3D().x, mMap["mia"]->getPosition3D().y, mMap["mia"]->getPosition3D().z };
 
         mCamera->lookAt(
-            glm::vec3{ mMap["mia"]->mx, mMap["mia"]->my - 10, mMap["mia"]->mz + 10 },
-            glm::vec3{ mMap["mia"]->mx, mMap["mia"]->my ,mMap["mia"]->mz },
+            glm::vec3{ playPos.x, playPos.y - 10, playPos.z + 10 },
+            glm::vec3{ playPos.x, playPos.y, playPos.z },
             glm::vec3{ 0.0f, 0.0f, 1.0f }
         );
 
@@ -114,12 +118,14 @@ void Scene::draw()
         mCamera->update();
 
 
+        //Move Camera
+        glm::vec3 playPos{ mMap["mia"]->getPosition3D().x, mMap["mia"]->getPosition3D().y, mMap["mia"]->getPosition3D().z };
 
         mCamera->lookAt(
-            glm::vec3{ mMap["mia"]->mx, mMap["mia"]->my - 10, mMap["mia"]->mz + 10 },
-            glm::vec3{ mMap["mia"]->mx, mMap["mia"]->my ,mMap["mia"]->mz },
+            glm::vec3{ playPos.x, playPos.y - 10, playPos.z + 10 },
+            glm::vec3{ playPos.x, playPos.y, playPos.z },
             glm::vec3{ 0.0f, 0.0f, 1.0f }
-          );
+        );
         
 
         for (auto it = mMap3.begin(); it != mMap3.end(); it++)

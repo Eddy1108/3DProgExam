@@ -41,7 +41,6 @@ void Camera::update()
 
 }
 
-//WASD QE, W=0, A=1, S=2, D=3, Q=4, E=5
 void Camera::TakeInput()
 {
 
@@ -92,6 +91,7 @@ void Camera::TakeInput()
 		}
 
 		mOrientation = glm::rotate(mOrientation, glm::radians(rotY), mUp);
+
 
 
 	}
