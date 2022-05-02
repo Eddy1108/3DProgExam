@@ -22,10 +22,6 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(mLight);
     mLight->setName("Light");
 
-    mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/monkey2.obj", ""));
-    temp->setName("Mario");
-    temp->move(-5, 0, 0);
-
     //mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/arthur.obj", ""));
 
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, 8.f, 0.f));
@@ -34,18 +30,12 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
 
         //Textured Objects
     //Use mObjects2!
-    mObjects2.push_back(temp = new TriangleSurface(*mShaderPrograms["textured"]));
-    temp->setName("TriangleSurface");
-    mObjects2.push_back(temp = new Triangle(*mShaderPrograms["textured"]));
-    temp->setName("Triangle");
-    mObjects2.push_back(temp = new ObjLoader(*mShaderPrograms["textured"], "../3DProgExam/assets/models/WA2.obj", "../3DProgExam/Assets/tex/waluigi_body.bmp"));
-    temp->setName("Waluigi");
-    mObjects2.push_back(temp = new Billboard(*mShaderPrograms["textured"], mCamera));
-    temp->setName("Billboard");
 
     
         //Phong Objects
     //Use mObjects3!
+
+    //Task 2:
     Heightmap* mHeightmap = new Heightmap(*mShaderPrograms["phong"]);
     mObjects3.push_back(mHeightmap);
     mHeightmap->setName("Heightmap");
@@ -78,7 +68,7 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
 
 
     //Make Quadtree
-    Point2D a{ -20, -20 }, b{ 20,-20 }, c{ 20,20 }, d{ -20,20 };
+    Point2D a{ -40, -40 }, b{ 40,-40 }, c{ 40,40 }, d{ -40,40 };
     mQuadTre.init(a, b, c, d);
     mQuadTre.subDivide(2);
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)

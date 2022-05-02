@@ -20,8 +20,8 @@ void Heightmap::init()
 
 	initializeOpenGLFunctions();
 
-	mTexture = new Texture("../3DProgExam/Assets/tex/linus.bmp");
-	mHeightmap = new Texture("../3DProgExam/Assets/tex/heightmap.bmp");
+	mTexture = new Texture("../3DProgExam/Assets/tex/Grass.bmp");
+	mHeightmap = new Texture("../3DProgExam/Assets/tex/EksamenHeightmap.bmp");
 
 	constructMap();
 
@@ -98,17 +98,17 @@ void Heightmap::draw()
 void Heightmap::constructMap()
 {
 
-	float mSize = .1f;
+	float mSize = .3f;
 	int width, height, nrChannels;
 
-	auto imageData = stbi_load("../3DProgExam/Assets/tex/heightmap.bmp", &width, &height, &nrChannels, 1);
+	auto imageData = stbi_load("../3DProgExam/Assets/tex/EksamenHeightmap.bmp", &width, &height, &nrChannels, 1);
 
 	if (imageData)
 	{
 		mWidth = width;
 		mHeight = height;
 		mDetail = 1;
-		mScale = 0.05f;
+		mScale = 0.2f;
 		offsetX = 10.f;
 		offsetY = 10.f;
 
