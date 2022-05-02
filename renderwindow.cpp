@@ -398,7 +398,7 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
     }
     if (event->key() == Qt::Key_G)
     {
-
+        Scenes[activeScene]->bPlayMode = !Scenes[activeScene]->bPlayMode;
     }
 
     if (event->key() == Qt::Key_Q)

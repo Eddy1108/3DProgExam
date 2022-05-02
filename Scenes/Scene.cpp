@@ -41,7 +41,12 @@ void Scene::init()
 void Scene::draw()
 {
     initializeOpenGLFunctions();
+
+    mCamera->bFollowPlayer = bPlayMode;
+    dynamic_cast<Player*>(mMap3["mia"])->bDrawCam = !bPlayMode;
+    dynamic_cast<XYZ*>(mMap["XYZ"])->bDraw = !bPlayMode;
  
+    //BEGIN
     mCamera->perspective(60, (float)16 / (float)9, 0.1f, 100.0);
 
     //Draw Plain Objects
@@ -165,8 +170,6 @@ void Scene::draw()
 
     drawCollision();
 
-    mCamera->bFollowPlayer = bPlayMode;
-    dynamic_cast<Player*>(mMap3["mia"])->bDrawCam = !bPlayMode;
 }
 
 void Scene::drawCollision()

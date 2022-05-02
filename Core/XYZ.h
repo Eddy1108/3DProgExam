@@ -16,5 +16,7 @@ public:
 	~XYZ() override;
 	void init() override;
 	void draw() override;
+
+	bool bDraw{ true };
 };
 

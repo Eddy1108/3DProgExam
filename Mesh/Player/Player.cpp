@@ -83,10 +83,10 @@ void Player::draw()
 {
 	PlayerModel->draw();
 	
+	updateFakeCam();
 
 	if (bDrawCam)
 	{
-		updateFakeCam();
 		CameraModel->draw();
 	}
 

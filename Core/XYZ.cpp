@@ -59,10 +59,13 @@ void XYZ::init() {
 
 void XYZ::draw()
 {
-	mShader.use();
+	if (bDraw)
+	{
+		mShader.use();
 
-	glBindVertexArray(mVAO);
-	glUniformMatrix4fv(mShader.mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
-	glDrawArrays(GL_LINES, 0, mVertices.size());
+		glBindVertexArray(mVAO);
+		glUniformMatrix4fv(mShader.mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
+		glDrawArrays(GL_LINES, 0, mVertices.size());
+	}
 }
 
