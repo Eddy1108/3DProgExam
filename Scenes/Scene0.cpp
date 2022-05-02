@@ -14,14 +14,6 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(temp = new XYZ(*mShaderPrograms["plain"]));
     temp->setName("XYZ");
 
-    //InteractiveObject* mInteract = new InteractiveObject(*mShaderPrograms["plain"]);
-    //mObjects.push_back(mInteract);
-    //mInteract->setName("mia");
-
-    InteractiveObject* mInteract = new Player(*mShaderPrograms["plain"]);
-    mObjects.push_back(mInteract);
-    mInteract->setName("mia");
-
     mLight = new Sun(*mShaderPrograms["plain"]);
     mObjects.push_back(mLight);
     mLight->setName("Sun");
@@ -41,6 +33,10 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     //Use mObjects3!
 
         //Task 2:
+    InteractiveObject* mInteract = new Player(*mShaderPrograms["phong"]);
+    mObjects3.push_back(mInteract);
+    mInteract->setName("mia");
+
     Heightmap* mHeightmap = new Heightmap(*mShaderPrograms["phong"]);
     mObjects3.push_back(mHeightmap);
     mHeightmap->setName("Heightmap");

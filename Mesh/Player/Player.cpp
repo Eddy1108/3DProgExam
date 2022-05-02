@@ -8,7 +8,7 @@
 Player::Player(Shader& shader)
 	: InteractiveObject(shader)
 {
-	PlayerModel = new ObjLoader(shader, "../3DProgExam/Assets/models/mario.obj", "../3DProgExam/Assets/tex/Grass.bmp");
+	PlayerModel = new ObjLoader(shader, "../3DProgExam/Assets/models/crew.obj", "../3DProgExam/Assets/tex/pew.bmp");
 
 
 	mBShape = new AABB();

@@ -359,11 +359,8 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->AMove = true;;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->AMove = true;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->AMove = true;
         
-
-        //auto position = Scenes[activeScene]->mMap["mia"]->getPosition2D();
-        //Scenes[activeScene]->mQuadTre.collisionCheck(position, "Trophy");
     }
     if (event->key() == Qt::Key_D)
     {
@@ -373,10 +370,7 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->DMove = true;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->DMove = true;
-
-        //auto position = Scenes[activeScene]->mMap["mia"]->getPosition2D();
-        //Scenes[activeScene]->mQuadTre.collisionCheck(position, "Trophy");
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->DMove = true;
 
     }
 
@@ -387,10 +381,8 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->SMove = true;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->SMove = true;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->SMove = true;
 
-        //auto position = Scenes[activeScene]->mMap["mia"]->getPosition2D();
-        //Scenes[activeScene]->mQuadTre.collisionCheck(position, "Trophy");
     }
     if (event->key() == Qt::Key_W)
     {
@@ -400,18 +392,12 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
             
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->WMove = true;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->WMove = true;
 
-        //auto position = Scenes[activeScene]->mMap["mia"]->getPosition2D();
-        //Scenes[activeScene]->mQuadTre.collisionCheck(position, "Trophy");
+
     }
     if (event->key() == Qt::Key_G)
     {
-        if (activeScene == 0)
-        {
-            //Scenes[activeScene]->mMap["NPC"]->activate();
-            //Scenes[activeScene]->mMap["Graph"]->activate();
-        }
 
     }
 
@@ -422,7 +408,7 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->QMove = true;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->QMove = true;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->QMove = true;
     }
 
     if (event->key() == Qt::Key_E)
@@ -432,7 +418,7 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->EMove = true;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->EMove = true;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->EMove = true;
 
     }
 }
@@ -446,7 +432,7 @@ void RenderWindow::keyReleaseEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->AMove = false;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->AMove = false;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->AMove = false;
         
     }
     if (event->key() == Qt::Key_D)
@@ -456,7 +442,7 @@ void RenderWindow::keyReleaseEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->DMove = false;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->DMove = false;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->DMove = false;
   
     }
 
@@ -467,7 +453,7 @@ void RenderWindow::keyReleaseEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->SMove = false;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->SMove = false;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->SMove = false;
         
     }
     if (event->key() == Qt::Key_W)
@@ -477,7 +463,7 @@ void RenderWindow::keyReleaseEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->WMove = false;
         }
         else
-        static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->WMove = false;
+        static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->WMove = false;
  
     }
 
@@ -488,7 +474,7 @@ void RenderWindow::keyReleaseEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->QMove = false;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->QMove = false;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->QMove = false;
     }
 
     if (event->key() == Qt::Key_E)
@@ -498,6 +484,6 @@ void RenderWindow::keyReleaseEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->EMove = false;
         }
         else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap["mia"])->EMove = false;
+            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->EMove = false;
     }
 }

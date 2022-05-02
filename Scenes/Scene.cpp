@@ -56,10 +56,10 @@ void Scene::draw()
         mCamera->update();
 
         //Move Player
-        mMap["mia"]->move(0.1f, 0.1f, 0.1f);
+        mMap3["mia"]->move(0.1f, 0.1f, 0.1f);
 
         //Move Camera
-        glm::vec3 playPos{ mMap["mia"]->getPosition3D().x, mMap["mia"]->getPosition3D().y, mMap["mia"]->getPosition3D().z };
+        glm::vec3 playPos{ mMap3["mia"]->getPosition3D().x, mMap3["mia"]->getPosition3D().y, mMap3["mia"]->getPosition3D().z };
         
         mCamera->lookAt(
             glm::vec3{ playPos.x, playPos.y - 10, playPos.z + 10},
@@ -88,7 +88,7 @@ void Scene::draw()
         mCamera->update();
 
         //Move Camera
-        glm::vec3 playPos{ mMap["mia"]->getPosition3D().x, mMap["mia"]->getPosition3D().y, mMap["mia"]->getPosition3D().z };
+        glm::vec3 playPos{ mMap3["mia"]->getPosition3D().x, mMap3["mia"]->getPosition3D().y, mMap3["mia"]->getPosition3D().z };
 
         mCamera->lookAt(
             glm::vec3{ playPos.x, playPos.y - 10, playPos.z + 10 },
@@ -119,7 +119,7 @@ void Scene::draw()
 
 
         //Move Camera
-        glm::vec3 playPos{ mMap["mia"]->getPosition3D().x, mMap["mia"]->getPosition3D().y, mMap["mia"]->getPosition3D().z };
+        glm::vec3 playPos{ mMap3["mia"]->getPosition3D().x, mMap3["mia"]->getPosition3D().y, mMap3["mia"]->getPosition3D().z };
 
         mCamera->lookAt(
             glm::vec3{ playPos.x, playPos.y - 10, playPos.z + 10 },
@@ -197,11 +197,11 @@ void Scene::drawCollision()
 
 void Scene::checkCollision()
 {
-    glm::vec2 playerPos = mMap["mia"]->getPosition2D();
+    glm::vec2 playerPos = mMap3["mia"]->getPosition2D();
     auto subtre = mQuadTre.find(playerPos);
     for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
     {
-        if ((*it)->mBShape && (*it)->getName() == "Trophy" && mMap["mia"]->mBShape->overlap((*it)->mBShape))
+        if ((*it)->mBShape && (*it)->getName() == "Trophy" && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
         {
             (*it)->activate();
         }
