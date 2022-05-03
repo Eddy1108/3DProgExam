@@ -92,6 +92,8 @@ Trophy::Trophy(Shader& shader, float x, float y, float z, bool red)
 	mMatrix = glm::mat4(1.0f);
 
 	mBShape = new AABB();
+	dynamic_cast<AABB*>(mBShape)->mExtent = glm::vec3{ 0.5 };
+
 	move(x, y, z);
 	bIsRed = red;
 }

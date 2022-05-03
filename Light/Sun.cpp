@@ -74,7 +74,7 @@ void Sun::draw()
     {
         glm::vec3 rotDistance{ 10.f,10.f,10.f };
 
-        //Rotate Sun here
+        //Rotate Sun
         mMatrix = glm::translate(mMatrix, -rotDistance);
         mMatrix = glm::rotate(mMatrix, glm::radians(-0.5f), glm::vec3{ 0.f,0.f,1.f });
         mMatrix = glm::translate(mMatrix, rotDistance);

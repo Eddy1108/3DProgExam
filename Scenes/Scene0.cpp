@@ -9,6 +9,7 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
 
     VisualObject* temp;
 
+
     ///Create Objects
         //Untextured Objects
     mObjects.push_back(temp = new XYZ(*mShaderPrograms["plain"]));
@@ -80,10 +81,6 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 32.f, 2.f, 2.f, false));
     temp->setName("BlueTrophy9");
     BlueTrophies.push_back(temp);
-
-    //Obj loading tests here
-    //mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/bomb.obj", ""));
-
 
 
     ///Textured Objects
@@ -168,10 +165,11 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     temp->setName("Fence17");
     temp->mPosition = glm::vec3(-6.f, -12.f, 1.f);
 
-        ///???
-    //Use mObjects4!
+    //mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
+    //temp->setName("Fence18");
+    //temp->mPosition = glm::vec3(21.f, -11.f, 1.f);
 
-
+    //Fence 18, 17 & 16 are cursed!!!
 
     ///Dump it all into Unordered lists
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)
@@ -188,10 +186,6 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     {
         mMap3.insert(std::pair<std::string, VisualObject*>{(*it)->getName(), * it});
     }
-    for (auto it = mObjects4.begin(); it != mObjects4.end(); it++)
-    {
-        mMap4.insert(std::pair<std::string, VisualObject*>{(*it)->getName(), * it});
-    }
 
 
     //Make Quadtree
@@ -202,16 +196,11 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     {
         if ((*it)->mBShape)
         {
-            mQuadTre->insert((*it), (*it)->mBShape);
-            //std::cout << (*it)->getName() << "    " << (*it)->getPosition2D().x << ", " << (*it)->getPosition2D().y << std::endl;
+            mQuadTre->insert((*it), (*it)->mBShape);    //Insert objects with a collision shape into the quadtre
         }
-        //else
-        //mQuadTre.insert((*it));
+
     }
-    //for (auto it = mObjects2.begin(); it != mObjects2.end(); it++)
-    //{
-    //    mQuadTre.insert((*it));
-    //}
+
     for (auto it = mObjects3.begin(); it != mObjects3.end(); it++)
     {
         if ((*it)->mBShape)

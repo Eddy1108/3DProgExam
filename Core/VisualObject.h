@@ -50,12 +50,10 @@ protected:
 
 	GLuint mVAO{ 0 };
 	GLuint mVBO{ 0 };
-	GLuint mEAB{ 0 }; //Holds the indices (Element Array Buffer - EAB) or EBO
+	GLuint mEAB{ 0 }; 
 
 
 	GLint mMatrixUniform{ 0 };
-	
-	//glm::vec3 mPosition;
 
 	glm::mat4 mRotation;
 	glm::mat4 mScale;

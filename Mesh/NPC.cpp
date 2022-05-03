@@ -54,19 +54,19 @@ void NPC::move()
 	mMatrix[3].y = mPosition.y;
 	mMatrix[3].z = mPosition.z;
 
+	//If there are tropies left, make forward vector to next one
 	if (mTrophies < mTrophyList.size())
 	{
 		mForward = glm::normalize(mTrophyList[mTrophies]->mPosition - mPosition);
 	}
 	else
-		mForward = glm::vec3{ 0.f };
+		mForward = glm::vec3{ 0.f };	//else stand still
 	
-
-	//std::cout << mPosition.x << ", " << mPosition.y << ", " << mPosition.z << std::endl;
-
+	//Update collision shape location
 	if (mBShape)
 	{
 		mBShape->mPosition = mPosition;
+		mBShape->mPosition.z += .2f;
 	}
 	NPCModel->mMatrix = mMatrix;
 }

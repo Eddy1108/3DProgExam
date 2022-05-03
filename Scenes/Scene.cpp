@@ -344,7 +344,7 @@ void Scene::DrawAABB(glm::vec3 position, glm::vec3 extent)
 
 void Scene::PauseObjects()
 {
-    mCamera->bFollowPlayer = bPlayMode;
+        mCamera->bFollowPlayer = bPlayMode;
 
     if (dynamic_cast<Player*>(mMap3["mia"]))
         dynamic_cast<Player*>(mMap3["mia"])->bDrawCam = !bPlayMode;

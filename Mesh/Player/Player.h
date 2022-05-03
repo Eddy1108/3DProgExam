@@ -39,7 +39,7 @@ public:
 
 private:
 	float rotate{ 0 };
-	float mSpeed = 0.2f;
+	float mSpeed = 0.25f;
 
 	int mTrophies{ 0 };
 

@@ -45,10 +45,8 @@ void Player::move(float x, float y, float z)
 {
 	rotate = 0;
 
-	if (!bDrawCam)
+	if (!bDrawCam)	//Stop moving when the editor cam is being drawn, so editor mode = no move.
 	{
-
-
 
 		if (bStunned)
 		{
@@ -65,6 +63,7 @@ void Player::move(float x, float y, float z)
 				return;
 		}
 
+		//Using forward vector to move!
 		if (SMove) mPosition += mSpeed * -mForward;
 
 		//If colliding with a fence, the player can only go backwards, BUG: Player can walk backwards through fences :)
@@ -78,16 +77,14 @@ void Player::move(float x, float y, float z)
 		}
 
 
-
-		glm::vec3 pos(mPosition.x, mPosition.y, mPosition.z);
-
-		if (mHeightmap && mHeightmap->IsInside(pos))
+		//Get height from heightmap if it is present (which it should be)
+		if (mHeightmap && mHeightmap->IsInside(mPosition))
 		{
 			//mz = mHeightmap->getHeight(glm::vec3(mx, my, mz));
-			mPosition.z = mHeightmap->getHeight(pos);
+			mPosition.z = mHeightmap->getHeight(mPosition);
 		}
 
-
+		//Rotate the player! variable "rotate" changes based on what input is, defaul is 0 so no turning unless unput is gotten
 		mMatrix = glm::rotate(mMatrix, glm::radians(rotate), glm::vec3{ 0.f,0.f,1.f });
 
 		mMatrix[3].x = mPosition.x;
@@ -101,6 +98,7 @@ void Player::move(float x, float y, float z)
 		if (mBShape)
 		{
 			mBShape->mPosition = mPosition;
+			mBShape->mPosition.z += 0.8f;
 		}
 		PlayerModel->mMatrix = mMatrix;
 
@@ -156,7 +154,7 @@ void Player::CheckWinLose()
 	}
 }
 
-bool Player::activate(float f)
+bool Player::activate(float f)	//activate is called when colliding with bombs
 {
 	if (!bStunned)
 	{

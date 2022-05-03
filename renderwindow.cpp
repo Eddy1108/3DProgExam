@@ -97,8 +97,8 @@ void RenderWindow::init()
     mShaderPrograms.insert(std::pair<std::string, Shader*>("phong", new PhongShader("../3DProgExam/Shaders/phongshader.vert", "../3DProgExam/Shaders/phongshader.frag")));
     mShaderPrograms.insert(std::pair<std::string, Shader*>("skybox", new SkyBoxShader("../3DProgExam/Shaders/skyboxShader.vert", "../3DProgExam/Shaders/skyboxShader.frag")));
 
+    //Set up Scene(s)
     Scenes.push_back(new Scene0(mShaderPrograms));
-    Scenes.push_back(new Scene1(mShaderPrograms));
 
 
     ///Initialize all the scenes
@@ -136,13 +136,6 @@ void RenderWindow::render()
 
     ///Draw active Scene
     Scenes[activeScene]->draw();
-
-
-    ///Debug Triangles
-    //glm::vec4 color = glm::vec4(1.f, 0.f, 0.f, 1.f);
-    //DrawLine(triangle[0], triangle[1], color);
-    //DrawLine(triangle[1], triangle[2], color);
-    //DrawLine(triangle[0], triangle[2], color);
     
 
      /// Other Things
@@ -153,9 +146,6 @@ void RenderWindow::render()
     mContext->swapBuffers(this);
 }
 
-//This function is called from Qt when window is exposed (shown)
-// and when it is resized
-//exposeEvent is a overridden function from QWindow that we inherit from
 void RenderWindow::exposeEvent(QExposeEvent *)
 {
     //if not already initialized - run init() function - happens on program start up
@@ -210,10 +200,7 @@ void RenderWindow::DrawLine(const glm::vec3& start, const glm::vec3& end, const 
     glBindVertexArray(0);
 }
 
-//The way this function is set up is that we start the clock before doing the draw call,
-// and check the time right after it is finished (done in the render function)
-//This will approximate what framerate we COULD have.
-//The actual frame rate on your monitor is limited by the vsync and is probably 60Hz
+
 void RenderWindow::calculateFramerate()
 {
     long nsecElapsed = mTimeStart.nsecsElapsed();
@@ -233,8 +220,6 @@ void RenderWindow::calculateFramerate()
     }
 }
 
-//Uses QOpenGLDebugLogger if this is present
-//Reverts to glGetError() if not
 void RenderWindow::checkForGLerrors()
 {
     if(mOpenGLDebugLogger)  //if our machine got this class to work
@@ -275,8 +260,7 @@ void RenderWindow::checkForGLerrors()
     }
 }
 
-//Tries to start the extended OpenGL debugger that comes with Qt
-//Usually works on Windows machines, but not on Mac...
+
 void RenderWindow::startOpenGLDebugger()
 {
     QOpenGLContext * temp = this->context();
@@ -323,22 +307,12 @@ void RenderWindow::mouseMoveEvent(QMouseEvent* event)
 
 }
 
-//Event sent from Qt when program receives a keyPress
-// NB - see renderwindow.h for signatures on keyRelease and mouse input
+
 void RenderWindow::keyPressEvent(QKeyEvent* event)
 {
     if (event->key() == Qt::Key_Escape)
     {
         mMainWindow->close();       //Shuts down the whole program
-    }
-
-    if (event->key() == Qt::Key_K)
-    {
-        activeScene++;
-        if (activeScene > Scenes.size()-1)
-        {
-            activeScene = 0;
-        }
     }
 
     if (event->key() == Qt::Key_C)
@@ -351,7 +325,6 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
 
-    //You get the keyboard input like this
     if(event->key() == Qt::Key_A)
     {
         if (!Scenes[activeScene]->mCamera->bFollowPlayer)
