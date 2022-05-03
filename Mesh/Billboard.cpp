@@ -14,9 +14,28 @@ Billboard::Billboard(Shader& shader, Camera* cam)
 	mVertices.push_back(Vertex(1.f, 1.f, 0.f, 0.f, 0.f, 1.f, 1.f, 1.f)); //D
 
 	mMatrix = glm::mat4(1.0f);
-	move(0.f, 0.f, 10.f);
+	mPosition = glm::vec3(0.f, 0.f, 10.f);
 
-	
+	mTexture = new Texture("../3DProgExam/Assets/tex/jacky.bmp");
+}
+
+Billboard::Billboard(Shader& shader, Camera* cam, std::string fileDir)
+	: VisualObject(shader)
+{
+
+	mVertices.push_back(Vertex(-1.f, -1.f, 0.f, 1.f, 0.f, 0.f, 0.f, 0.f)); //A
+	mVertices.push_back(Vertex(-1.f, 1.f, 0.f, 0.f, 1.f, 0.f, 0.f, 1.f)); //C
+	mVertices.push_back(Vertex(1.f, 1.f, 0.f, 0.f, 0.f, 1.f, 1.f, 1.f)); //D
+
+	mVertices.push_back(Vertex(-1.f, -1.f, 0.f, 1.f, 0.f, 0.f, 0.f, 0.f)); //A
+	mVertices.push_back(Vertex(1.f, -1.f, 0.f, 0.f, 1.f, 0.f, 1.f, 0.f)); //B
+	mVertices.push_back(Vertex(1.f, 1.f, 0.f, 0.f, 0.f, 1.f, 1.f, 1.f)); //D
+
+	mMatrix = glm::mat4(1.0f);
+	mPosition = glm::vec3(0.f, 0.f, 10.f);
+
+	mCam = cam;
+	mTexture = new Texture(fileDir);
 }
 
 Billboard::~Billboard()
@@ -27,19 +46,30 @@ void Billboard::init()
 {
 	VisualObject::initTexture();
 
-	mTexture = new Texture("../3DProgExam/Assets/tex/jacky.bmp");
+
 }
 
 void Billboard::draw()
 {
-	//RotateToCamMatrix();
-	RotateToCamDirect();
+	move();
+
+	RotateToCamMatrix();
+	//RotateToCamDirect();
 
 	//Not needed but to overwrite other textures in this slot we must do this each draw call
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, mTexture->id());
 
 	VisualObject::draw();
+
+}
+
+void Billboard::move()
+{
+
+	mMatrix[3].x = mPosition.x;
+	mMatrix[3].y = mPosition.y;
+	mMatrix[3].z = mPosition.z;
 
 }
 

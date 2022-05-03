@@ -91,6 +91,8 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
 
     ///Textured Objects
 //Use mObjects2!
+    //mObjects2.push_back(temp = new Billboard(*mShaderPrograms["textured"], mCamera, "../3DProgExam/Assets/tex/jacky.bmp"));
+    //temp->setName("Billboard Test");
 
 
     ///Phong Objects (+ Texture)
@@ -100,6 +102,7 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     InteractiveObject* mInteract = new Player(*mShaderPrograms["phong"]);
     mObjects3.push_back(mInteract);
     mInteract->setName("mia");
+    dynamic_cast<Player*>(mInteract)->mCam = mCamera;
 
     //Task 2:
     Heightmap* mHeightmap = new Heightmap(*mShaderPrograms["phong"]);

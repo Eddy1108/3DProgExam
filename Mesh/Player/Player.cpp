@@ -25,6 +25,8 @@ void Player::init()
 
 void Player::draw()
 {
+	CheckWinLose();
+
 	PlayerModel->draw();
 	
 	updateFakeCam();
@@ -32,6 +34,10 @@ void Player::draw()
 	if (bDrawCam)
 	{
 		CameraModel->draw();
+	}
+	if (StatusScreen)
+	{
+		StatusScreen->draw();
 	}
 }
 
@@ -53,8 +59,6 @@ void Player::move(float x, float y, float z)
 		else
 			return;
 	}
-
-	
 
 	if (SMove) mPosition += mSpeed * -mForward;
 
@@ -78,8 +82,6 @@ void Player::move(float x, float y, float z)
 		mPosition.z = mHeightmap->getHeight(pos);
 	}
 
-	
-
 
 	mMatrix = glm::rotate(mMatrix, glm::radians(rotate), glm::vec3{ 0.f,0.f,1.f });
 
@@ -87,17 +89,7 @@ void Player::move(float x, float y, float z)
 	mMatrix[3].y = mPosition.y;
 	mMatrix[3].z = mPosition.z;
 	
-
 	mForward = glm::rotate(mForward, glm::radians(rotate), mUp);
-
-
-
-
-
-
-
-
-
 
 
 	//Final stuff dont mind this
@@ -108,6 +100,13 @@ void Player::move(float x, float y, float z)
 	PlayerModel->mMatrix = mMatrix;
 
 	mCameraOffset = glm::vec3{ mPosition.x + -mForward.x * 10.f, mPosition.y + -mForward.y * 10.f, mPosition.z + 10.f };
+
+	if (StatusScreen)
+	{
+		StatusScreen->mPosition = mPosition + (mForward * glm::vec3(2.f));
+		StatusScreen->mPosition.z += 5.f;
+
+	}
 
 	//Reset is player is blocked;
 	bBlocked = false;
@@ -129,6 +128,25 @@ void Player::CollectTrophy()
 	if (mTrophies == 10)
 	{
 		WinState = 1;
+	}
+}
+
+void Player::CheckWinLose()
+{
+	if (WinState != 0 && !bGameOver)
+	{
+		if (WinState == 1)
+		{
+			StatusScreen = new Billboard(mShader, mCam, "../3DProgExam/Assets/tex/win.bmp");
+			StatusScreen->init();
+		}
+		else if (WinState == 2)
+		{
+			StatusScreen = new Billboard(mShader, mCam, "../3DProgExam/Assets/tex/lost.bmp");
+			StatusScreen->init();
+		}
+
+		bGameOver = true;
 	}
 }
 

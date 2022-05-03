@@ -1,6 +1,7 @@
 #pragma once
 #include "Mesh/Player/InteractiveObject.h"
 #include "Mesh/ObjLoader.h"
+#include "Mesh/Billboard.h"
 
 #include <chrono>
 
@@ -15,6 +16,7 @@ public:
 
 	void updateFakeCam();
 	void CollectTrophy();
+	void CheckWinLose();
 
 	//Activate STUN!
 	bool activate(float f = 0) override;
@@ -27,6 +29,11 @@ public:
 
 	ObjLoader* PlayerModel{ nullptr };
 	ObjLoader* CameraModel{ nullptr };
+	Billboard* StatusScreen{ nullptr };
+
+	Camera* mCam{ nullptr };
+
+	bool bGameOver{ false };
 	bool bDrawCam{ true };
 	bool bBlocked{ false };
 

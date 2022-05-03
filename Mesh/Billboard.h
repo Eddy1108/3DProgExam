@@ -7,11 +7,15 @@
 class Billboard : public VisualObject
 {
 public:
+
 	Billboard(Shader& shader, Camera* cam);
+	Billboard(Shader& shader, Camera* cam, std::string fileDir);
 	~Billboard();
 
 	void init() override;
 	void draw() override;
+
+	void move();
 
 	glm::vec3 mUp = glm::vec3(0.0f, 0.0f, 1.0f);
 	glm::vec3 mOrientation = glm::vec3(0.0f, 1.0f, 0.0f);

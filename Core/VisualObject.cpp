@@ -126,7 +126,7 @@ void VisualObject::move(float x, float y, float z)
 {
 	//This is a hard set move, no delta.
 
-	mMatrix = glm::mat4(1.0f);		//Always do this first before moving
+	mMatrix = glm::mat4(1.0f);		//Always do this first before moving	-> Always make sure mMatrix has been set to identity at least once before, if not its invisible
 	glm::vec3 pos = glm::vec3(x, y, z);
 	mPosition = pos;
 	mMatrix = glm::translate(mMatrix, pos);
