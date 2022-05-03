@@ -18,8 +18,15 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(mLight);
     mLight->setName("Sun");
 
+    //Task 7:
     //mObjects.push_back(temp = new BezierCurve(*mShaderPrograms["plain"]));
     //temp->setName("Bezier");
+
+    mObjects.push_back(temp = new Enemy(*mShaderPrograms["plain"], mQuadTre));
+    temp->setName("Enemy");
+    mObjects.push_back(temp = new Bomb(*mShaderPrograms["plain"], mQuadTre));
+    temp->setName("Bomb0");
+
 
 
     //Task 8
@@ -78,7 +85,7 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     BlueTrophies.push_back(temp);
 
     //Obj loading tests here
-//mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/Sun.obj", ""));
+    //mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/bomb.obj", ""));
 
 
 
@@ -135,14 +142,14 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
 
     //Make Quadtree
     Point2D a{ -40, -40 }, b{ 40,-40 }, c{ 40,40 }, d{ -40,40 };
-    mQuadTre.init(a, b, c, d);
-    mQuadTre.subDivide(2);
+    mQuadTre->init(a, b, c, d);
+    mQuadTre->subDivide(2);
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)
     {
         if ((*it)->mBShape)
         {
-            mQuadTre.insert((*it), (*it)->mBShape);
-            std::cout << (*it)->getName() << "    " << (*it)->getPosition2D().x << ", " << (*it)->getPosition2D().y << std::endl;
+            mQuadTre->insert((*it), (*it)->mBShape);
+            //std::cout << (*it)->getName() << "    " << (*it)->getPosition2D().x << ", " << (*it)->getPosition2D().y << std::endl;
         }
         //else
         //mQuadTre.insert((*it));
@@ -151,10 +158,13 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     //{
     //    mQuadTre.insert((*it));
     //}
-    //for (auto it = mObjects3.begin(); it != mObjects3.end(); it++)
-    //{
-    //    mQuadTre.insert((*it));
-    //}
+    for (auto it = mObjects3.begin(); it != mObjects3.end(); it++)
+    {
+        if ((*it)->mBShape)
+        {
+            mQuadTre->insert((*it), (*it)->mBShape);
+        }
+    }
 }
 
 Scene0::~Scene0()

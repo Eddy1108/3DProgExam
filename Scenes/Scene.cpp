@@ -3,6 +3,7 @@
 Scene::Scene(std::unordered_map<std::string, Shader*> shaders)
 	: mShaderPrograms{shaders}
 {
+    mQuadTre = new QuadTre();
 }
 
 Scene::~Scene()
@@ -192,10 +193,10 @@ void Scene::drawCollision()
         }
     }
 
-    DrawAABB(mQuadTre.m_ne->mShape->mPosition, mQuadTre.m_ne->mShape->mExtent);
-    DrawAABB(mQuadTre.m_nw->mShape->mPosition, mQuadTre.m_nw->mShape->mExtent);
-    DrawAABB(mQuadTre.m_se->mShape->mPosition, mQuadTre.m_se->mShape->mExtent);
-    DrawAABB(mQuadTre.m_sw->mShape->mPosition, mQuadTre.m_sw->mShape->mExtent);
+    DrawAABB(mQuadTre->m_ne->mShape->mPosition, mQuadTre->m_ne->mShape->mExtent);
+    DrawAABB(mQuadTre->m_nw->mShape->mPosition, mQuadTre->m_nw->mShape->mExtent);
+    DrawAABB(mQuadTre->m_se->mShape->mPosition, mQuadTre->m_se->mShape->mExtent);
+    DrawAABB(mQuadTre->m_sw->mShape->mPosition, mQuadTre->m_sw->mShape->mExtent);
 }
 
 void Scene::checkCollision()
@@ -204,10 +205,10 @@ void Scene::checkCollision()
     glm::vec2 NPCPos = mMap3["NPC"]->getPosition2D();
 
     //Check Collision for Player
-    QuadTre* subtre = mQuadTre.find(playerPos);
+    QuadTre* subtre = mQuadTre->find(playerPos);
     for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
     {
-        if ((*it)->mBShape && dynamic_cast<Trophy*>(*it)->bIsRed && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
+        if ((*it)->mBShape && dynamic_cast<Trophy*>(*it) != nullptr && dynamic_cast<Trophy*>(*it)->bIsRed && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
         {
             
             if ((*it)->activate())
@@ -219,10 +220,10 @@ void Scene::checkCollision()
     }
 
     //Check Collision for NPC
-    subtre = mQuadTre.find(NPCPos);
+    subtre = mQuadTre->find(NPCPos);
     for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
     {
-        if ((*it)->mBShape && !(dynamic_cast<Trophy*>(*it)->bIsRed) && mMap3["NPC"]->mBShape->overlap((*it)->mBShape))
+        if ((*it)->mBShape && dynamic_cast<Trophy*>(*it) != nullptr && !(dynamic_cast<Trophy*>(*it)->bIsRed) && mMap3["NPC"]->mBShape->overlap((*it)->mBShape))
         {
 
             if ((*it)->activate())

@@ -2,6 +2,7 @@
 #include "Mesh/Player/InteractiveObject.h"
 #include "Mesh/ObjLoader.h"
 
+#include <chrono>
 
 class Player : public InteractiveObject
 {
@@ -14,6 +15,9 @@ public:
 
 	void updateFakeCam();
 	void CollectTrophy();
+
+	//Activate STUN!
+	bool activate(float f = 0) override;
 
 	glm::vec3 mForward{ 0.f, 1.f, 0.f };
 	glm::vec3 mUp{ 0.f,0.f,1.f };
@@ -30,5 +34,10 @@ private:
 	float mSpeed = 0.2f;
 
 	int mTrophies{ 0 };
+
+	bool bStunned{ false };
+
+	std::chrono::steady_clock::time_point TimeStart;
+	std::chrono::steady_clock::time_point TimeEnd;
 };
 

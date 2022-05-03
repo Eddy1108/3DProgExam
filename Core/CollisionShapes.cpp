@@ -33,8 +33,7 @@ bool CollisionShape::overlap(AABB* a, AABB* b)
 	};
 
 	return (
-		distance.x < minDistance.x && distance.y < minDistance.y 
-		//&& distance.z < minDistance.z
+		distance.x < minDistance.x && distance.y < minDistance.y && distance.z < minDistance.z
 		);
 
 

@@ -18,6 +18,7 @@
 #include "Mesh/Billboard.h"
 #include "Mesh/Player/Player.h"
 #include "Mesh/NPC.h"
+#include "Mesh/Enemy.h"
 
 #include "Mesh/ObjLoader.h"
 #include "Mesh/SkyBox.h"

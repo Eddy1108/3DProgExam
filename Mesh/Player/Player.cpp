@@ -33,12 +33,26 @@ void Player::draw()
 	{
 		CameraModel->draw();
 	}
-
 }
 
 void Player::move(float x, float y, float z)
 {
 	rotate = 0;
+
+	if (bStunned)
+	{
+		TimeEnd = std::chrono::steady_clock::now();
+
+		auto test = std::chrono::duration_cast<std::chrono::seconds>(TimeEnd - TimeStart).count();
+		//std::cout << "STUN Start: " << test << std::endl;
+
+		if (test > 1.f)
+		{
+			bStunned = false;
+		}
+		else
+			return;
+	}
 
 	if (WMove) mPosition += mSpeed * mForward;
 
@@ -105,4 +119,18 @@ void Player::CollectTrophy()
 	{
 		WinState = 1;
 	}
+}
+
+bool Player::activate(float f)
+{
+	if (!bStunned)
+	{
+		bStunned = true;
+		TimeStart = std::chrono::steady_clock::now();
+		std::cout << "PLAYER STUNNED" << std::endl;
+
+		return true;
+	}
+	else
+		return false;
 }

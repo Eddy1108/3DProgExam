@@ -221,25 +221,21 @@ QuadTre* QuadTre::insert(VisualObject* gameObject, CollisionShape* shape)
         if (shape->overlap(m_sw->mShape))
         {
             m_sw->insert(gameObject, shape);
-            std::cout << "NAME: " << gameObject->getName() << std::endl;
         }
 
         if (shape->overlap(m_se->mShape))
         {
             m_se->insert(gameObject, shape);
-            std::cout << "NAME: " << gameObject->getName() << std::endl;
         }
 
         if (shape->overlap(m_ne->mShape))
         {
             m_ne->insert(gameObject, shape);
-            std::cout << "NAME: " << gameObject->getName() << std::endl;
         }
 
         if (shape->overlap(m_nw->mShape))
         {
             m_nw->insert(gameObject, shape);
-            std::cout << "NAME: " << gameObject->getName() << std::endl;
         }
 
 

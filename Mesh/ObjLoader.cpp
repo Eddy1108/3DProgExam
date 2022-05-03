@@ -189,7 +189,7 @@ void ObjLoader::ReadFile(std::string filedir)
 		mIndices = VertexNormalIndicies;
 
 	//Does it work?
-	std::cout << "Nr of verts: " << mVertices.size() << "\n";
+	//std::cout << "Nr of verts: " << mVertices.size() << "\n";
 
 	}
 

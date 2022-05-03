@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/VisualObject.h"
 #include "Mesh/ObjLoader.h"
-#
+#include <chrono>
 
 class Heightmap;
 
@@ -17,6 +17,9 @@ public:
 
 	bool CollectTrophy();
 
+	//Activate STUN
+	bool activate(float f = 0) override;
+
 	glm::vec3 mForward{ 0.f, 1.f, 0.f };
 	glm::vec3 mUp{ 0.f,0.f,1.f };
 
@@ -25,9 +28,15 @@ public:
 
 	std::vector<VisualObject*> mTrophyList;
 
+
 private:
 
-	float mSpeed = 0.1f;
+	bool bStunned{ false };
+	float mSpeed = 0.25f;
 	int mTrophies{ 0 };
+
+	std::chrono::steady_clock::time_point TimeStart;
+	std::chrono::steady_clock::time_point TimeEnd;
+
 };
 

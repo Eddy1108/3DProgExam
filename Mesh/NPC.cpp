@@ -19,14 +19,29 @@ void NPC::init()
 
 void NPC::draw()
 {
+
 	move();
+	
 
 	NPCModel->draw();
 }
 
 void NPC::move()
 {
+	if (bStunned)
+	{
+		TimeEnd = std::chrono::steady_clock::now();
 
+		auto test = std::chrono::duration_cast<std::chrono::seconds>(TimeEnd - TimeStart).count();
+		//std::cout << "STUN Start: " << test << std::endl;
+
+		if (test > 1.f)
+		{
+			bStunned = false;
+		}
+		else
+			return;
+	}
 
 	mPosition += mSpeed * mForward;
 
@@ -67,4 +82,18 @@ bool NPC::CollectTrophy()
 	}
 
 	return false;
+}
+
+bool NPC::activate(float f)
+{
+	if (!bStunned)
+	{
+		bStunned = true;
+		TimeStart = std::chrono::steady_clock::now();
+		std::cout << "NPC STUNNED" << std::endl;
+
+		return true;
+	}
+	else
+		return false;
 }

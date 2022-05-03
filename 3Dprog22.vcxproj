@@ -190,6 +190,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Mesh\Enemy.cpp" />
     <ClCompile Include="Math\Barycentric.cpp" />
     <ClCompile Include="Math\BezierCurve.cpp" />
     <ClCompile Include="Mesh\Billboard.cpp" />
@@ -233,6 +234,7 @@
     <ClCompile Include="Light\Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Mesh\Enemy.h" />
     <ClInclude Include="Math\Barycentric.h" />
     <ClInclude Include="Math\BezierCurve.h" />
     <ClInclude Include="Mesh\Billboard.h" />
