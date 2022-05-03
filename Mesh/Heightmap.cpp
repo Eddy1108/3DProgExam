@@ -20,7 +20,8 @@ void Heightmap::init()
 
 	initializeOpenGLFunctions();
 
-	mTexture = new Texture("../3DProgExam/Assets/tex/Grass.bmp");
+	//Grass texture from here: https://www.pinterest.com/pin/texture-png-seamless-tileable-grass--596867756834423269/
+	mTexture = new Texture("../3DProgExam/Assets/tex/RealGrass.bmp");
 	mHeightmap = new Texture("../3DProgExam/Assets/tex/EksamenHeightmap.bmp");
 
 	constructMap();

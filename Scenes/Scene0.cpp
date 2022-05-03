@@ -114,6 +114,60 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     npc->mHeightmap = mHeightmap;
     npc->mTrophyList = BlueTrophies;
 
+    //Task 10
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
+    temp->setName("Fence1");
+    temp->mPosition = glm::vec3(13.f, 10.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
+    temp->setName("Fence2");
+    temp->mPosition = glm::vec3(13.f, 12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
+    temp->setName("Fence3");
+    temp->mPosition = glm::vec3(13.f, 8.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
+    temp->setName("Fence4");
+    temp->mPosition = glm::vec3(13.f, 6.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
+    temp->setName("Fence5");
+    temp->mPosition = glm::vec3(13.f, 4.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
+    temp->setName("Fence6");
+    temp->mPosition = glm::vec3(13.f, 2.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
+    temp->setName("Fence7");
+    temp->mPosition = glm::vec3(13.f, 0.f, 1.f);
+
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence8");
+    temp->mPosition = glm::vec3(-10.f, -12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence9");
+    temp->mPosition = glm::vec3(-12.f, -12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence10");
+    temp->mPosition = glm::vec3(-14.f, -12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence11");
+    temp->mPosition = glm::vec3(-16.f, -12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence12");
+    temp->mPosition = glm::vec3(-18.f, -12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence13");
+    temp->mPosition = glm::vec3(-20.f, -12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence14");
+    temp->mPosition = glm::vec3(-22.f, -12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence15");
+    temp->mPosition = glm::vec3(-24.f, -12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence16");
+    temp->mPosition = glm::vec3(-8.f, -12.f, 1.f);
+    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
+    temp->setName("Fence17");
+    temp->mPosition = glm::vec3(-6.f, -12.f, 1.f);
+
         ///???
     //Use mObjects4!
 

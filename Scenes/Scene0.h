@@ -19,6 +19,7 @@
 #include "Mesh/Player/Player.h"
 #include "Mesh/NPC.h"
 #include "Mesh/Enemy.h"
+#include "Mesh/Fence.h"
 
 #include "Mesh/ObjLoader.h"
 #include "Mesh/SkyBox.h"

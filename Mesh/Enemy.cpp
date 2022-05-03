@@ -51,6 +51,7 @@ void Enemy::move()
 {
 	float dir{ .3f };
 
+	//Bezier code is being weird so this will be use for now
 	if (mPosition.x > 30.f)
 	{
 		tempDir = false;

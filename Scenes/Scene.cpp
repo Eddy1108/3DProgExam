@@ -175,7 +175,26 @@ void Scene::draw()
 
 void Scene::drawCollision()
 {
+    //Draw collision for Plain objects
     for (auto it = mMap.begin(); it != mMap.end(); it++)
+    {
+        if ((*it).second->mBShape)
+        {
+            if ((*it).second->mBShape->mType == CollisionShape::Type::AABB)
+            {
+
+                if ((*it).second->mBShape->bDrawBox)
+                {
+                    DrawAABB(
+                        dynamic_cast<AABB*>((*it).second->mBShape)->mPosition,
+                        dynamic_cast<AABB*>((*it).second->mBShape)->mExtent
+                    );
+                }
+            };
+        }
+    }
+    //Draw collision for Phong objects
+    for (auto it = mMap3.begin(); it != mMap3.end(); it++)
     {
         if ((*it).second->mBShape)
         {
@@ -217,6 +236,11 @@ void Scene::checkCollision()
             }
             
         }
+
+        if ((*it)->mBShape && dynamic_cast<Fence*>(*it) != nullptr && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
+        {
+            dynamic_cast<Player*>(mMap3["mia"])->bBlocked = true;
+        }
     }
 
     //Check Collision for NPC
@@ -228,8 +252,12 @@ void Scene::checkCollision()
 
             if ((*it)->activate())
             {
-                if((dynamic_cast<NPC*>(mMap3["NPC"])->CollectTrophy()))
+                if ((dynamic_cast<NPC*>(mMap3["NPC"])->CollectTrophy())) 
+                {
                     std::cout << "ENEMY WIN" << std::endl;
+                    dynamic_cast<Player*>(mMap3["mia"])->WinState = 2;
+                }
+
             }
 
         }

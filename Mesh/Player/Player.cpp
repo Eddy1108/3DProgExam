@@ -1,13 +1,13 @@
 #include "Player.h"
 #include "mesh/Heightmap.h"
 
-//#include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/rotate_vector.hpp"
 #include "glm/gtx/vector_angle.hpp"
 
 Player::Player(Shader& shader)
 	: InteractiveObject(shader)
 {
+	//Player model from here : https://sketchfab.com/3d-models/among-us-428bb9a3637e458c8336e4a7aefd4e3d
 	PlayerModel = new ObjLoader(shader, "../3DProgExam/Assets/models/crew.obj", "../3DProgExam/Assets/tex/pew.bmp");
 	CameraModel = new ObjLoader(shader, "../3DProgExam/Assets/models/camera2.obj", "../3DProgExam/Assets/tex/gray.bmp");
 
@@ -54,13 +54,21 @@ void Player::move(float x, float y, float z)
 			return;
 	}
 
-	if (WMove) mPosition += mSpeed * mForward;
+	
 
 	if (SMove) mPosition += mSpeed * -mForward;
 
-	if (AMove) rotate = 3;
+	//If colliding with a fence, the player can only go backwards, BUG: Player can walk backwards through fences :)
+	if (!bBlocked)
+	{
+		if (WMove) mPosition += mSpeed * mForward;
 
-	if (DMove) rotate = -3;
+		if (AMove) rotate = 3;
+
+		if (DMove) rotate = -3;
+	}
+
+
 
 	glm::vec3 pos(mPosition.x, mPosition.y, mPosition.z);
 
@@ -100,6 +108,9 @@ void Player::move(float x, float y, float z)
 	PlayerModel->mMatrix = mMatrix;
 
 	mCameraOffset = glm::vec3{ mPosition.x + -mForward.x * 10.f, mPosition.y + -mForward.y * 10.f, mPosition.z + 10.f };
+
+	//Reset is player is blocked;
+	bBlocked = false;
 }
 
 void Player::updateFakeCam()

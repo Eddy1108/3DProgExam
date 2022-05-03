@@ -15,6 +15,7 @@
 #include "Core/Shader.h"
 #include "Mesh/SkyBox.h"
 #include "Light/Light.h"
+#include "Mesh/Fence.h"
 
 #include <unordered_map>
 #include "Core/quadtree.h"

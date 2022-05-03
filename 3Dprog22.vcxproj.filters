@@ -173,6 +173,9 @@
     <ClCompile Include="Mesh\Enemy.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh\Fence.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Barycentric.h">
@@ -299,6 +302,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Mesh\Enemy.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Fence.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

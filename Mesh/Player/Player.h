@@ -28,6 +28,7 @@ public:
 	ObjLoader* PlayerModel{ nullptr };
 	ObjLoader* CameraModel{ nullptr };
 	bool bDrawCam{ true };
+	bool bBlocked{ false };
 
 private:
 	float rotate{ 0 };
