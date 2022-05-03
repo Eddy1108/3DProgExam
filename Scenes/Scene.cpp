@@ -201,9 +201,10 @@ void Scene::drawCollision()
 void Scene::checkCollision()
 {
     glm::vec2 playerPos = mMap3["mia"]->getPosition2D();
+    glm::vec2 NPCPos = mMap3["NPC"]->getPosition2D();
 
     //Check Collision for Player
-    auto subtre = mQuadTre.find(playerPos);
+    QuadTre* subtre = mQuadTre.find(playerPos);
     for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
     {
         if ((*it)->mBShape && dynamic_cast<Trophy*>(*it)->bIsRed && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
@@ -211,14 +212,27 @@ void Scene::checkCollision()
             
             if ((*it)->activate())
             {
-                dynamic_cast<Player*>(mMap3["mia"])->CollectItem();
+                dynamic_cast<Player*>(mMap3["mia"])->CollectTrophy();
             }
             
         }
     }
 
     //Check Collision for NPC
+    subtre = mQuadTre.find(NPCPos);
+    for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
+    {
+        if ((*it)->mBShape && !(dynamic_cast<Trophy*>(*it)->bIsRed) && mMap3["NPC"]->mBShape->overlap((*it)->mBShape))
+        {
 
+            if ((*it)->activate())
+            {
+                if((dynamic_cast<NPC*>(mMap3["NPC"])->CollectTrophy()))
+                    std::cout << "ENEMY WIN" << std::endl;
+            }
+
+        }
+    }
 
     //Check Collision for BOMB
 

@@ -21,6 +21,8 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     //mObjects.push_back(temp = new BezierCurve(*mShaderPrograms["plain"]));
     //temp->setName("Bezier");
 
+
+    //Task 8
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, 8.f, 2.f, true));
     temp->setName("RedTrophy0");
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 20.f, 10.f, 2.f, true));
@@ -42,48 +44,68 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -17.f, -20.f, 2.f, true));
     temp->setName("RedTrophy9");
 
+    std::vector<VisualObject*> BlueTrophies;
+
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 0.f, 8.f, 2.f, false));
     temp->setName("BlueTrophy0");
+    BlueTrophies.push_back(temp);
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -9.f, 15.f, 2.f, false));
     temp->setName("BlueTrophy1");
+    BlueTrophies.push_back(temp);
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 25.f, -22.f, 2.f, false));
     temp->setName("BlueTrophy2");
+    BlueTrophies.push_back(temp);
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 10.f, -27.f, 2.f, false));
     temp->setName("BlueTrophy3");
+    BlueTrophies.push_back(temp);
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 25.f, 20.f, 2.f, false));
     temp->setName("BlueTrophy4");
+    BlueTrophies.push_back(temp);
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -6.f, -18.f, 2.f, false));
     temp->setName("BlueTrophy5");
+    BlueTrophies.push_back(temp);
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -25.f, -15.f, 2.f, false));
     temp->setName("BlueTrophy6");
+    BlueTrophies.push_back(temp);
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -30.f, 10.f, 2.f, false));
     temp->setName("BlueTrophy7");
+    BlueTrophies.push_back(temp);
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -32.f, 25.f, 2.f, false));
     temp->setName("BlueTrophy8");
+    BlueTrophies.push_back(temp);
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 32.f, 2.f, 2.f, false));
     temp->setName("BlueTrophy9");
+    BlueTrophies.push_back(temp);
 
-        //Obj loading tests
-    //mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/Sun.obj", ""));
+    //Obj loading tests here
+//mObjects.push_back(temp = new ObjLoader(*mShaderPrograms["plain"], "../3DProgExam/assets/models/Sun.obj", ""));
 
 
 
-        ///Textured Objects
-    //Use mObjects2!
+    ///Textured Objects
+//Use mObjects2!
 
-    
-        ///Phong Objects (+ Texture)
-    //Use mObjects3!
 
-        //Task 2:
+    ///Phong Objects (+ Texture)
+//Use mObjects3!
+
+    //Task 4:
     InteractiveObject* mInteract = new Player(*mShaderPrograms["phong"]);
     mObjects3.push_back(mInteract);
     mInteract->setName("mia");
 
+    //Task 2:
     Heightmap* mHeightmap = new Heightmap(*mShaderPrograms["phong"]);
     mObjects3.push_back(mHeightmap);
     mHeightmap->setName("Heightmap");
     mInteract->mHeightmap = mHeightmap;
+
+    //Task 9:
+    NPC* npc = new NPC(*mShaderPrograms["phong"]);
+    mObjects3.push_back(npc);
+    npc->setName("NPC");
+    npc->mHeightmap = mHeightmap;
+    npc->mTrophyList = BlueTrophies;
 
         ///???
     //Use mObjects4!

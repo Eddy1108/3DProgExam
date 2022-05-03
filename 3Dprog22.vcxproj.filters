@@ -167,6 +167,9 @@
     <ClCompile Include="Mesh\Player\Player.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh\NPC.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Barycentric.h">
@@ -287,6 +290,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Mesh\Player\Player.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\NPC.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -207,6 +207,7 @@
     <ClCompile Include="Mesh\ObjLoader.cpp" />
     <ClCompile Include="Mesh\OctahedronBall.cpp" />
     <ClCompile Include="Mesh\Player\Player.cpp" />
+    <ClCompile Include="Mesh\NPC.cpp" />
     <ClCompile Include="Shaders\PhongShader.cpp" />
     <ClCompile Include="Shaders\PlainShader.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="Mesh\ObjLoader.h" />
     <ClInclude Include="Mesh\OctahedronBall.h" />
     <ClInclude Include="Mesh\Player\Player.h" />
+    <ClInclude Include="Mesh\NPC.h" />
     <ClInclude Include="Shaders\PhongShader.h" />
     <ClInclude Include="Shaders\PlainShader.h" />
     <ClInclude Include="Scenes\Scene.h" />

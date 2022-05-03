@@ -7,6 +7,7 @@
 
 #include "mesh/Player/InteractiveObject.h"
 #include "Mesh/Player/Player.h"
+#include "Mesh/NPC.h"
 #include "Core/XYZ.h"
 #include "mesh/TriangleSurface.h"
 #include "Core/Camera.h"
