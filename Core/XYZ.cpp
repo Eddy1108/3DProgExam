@@ -59,7 +59,7 @@ void XYZ::init() {
 
 void XYZ::draw()
 {
-	if (bDraw)
+	if (bDraw)	//When in editor mode, draw XYZ!
 	{
 		mShader.use();
 

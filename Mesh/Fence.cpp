@@ -3,8 +3,7 @@
 Fence::Fence(Shader& shader, bool useX)
 	:VisualObject(shader), useX{useX}
 {
-	//ObjLoader(shader, "../3DProgExam/Assets/models/crew.obj", "../3DProgExam/Assets/tex/pew.bmp");
-	
+	//change model based on which orientation is wanted, should probably have done this in mMatrix instead oops
 	if (useX)
 		FenceModel = new ObjLoader(shader, "../3DProgExam/Assets/models/fenceX.obj", "");
 	else
@@ -19,7 +18,7 @@ Fence::Fence(Shader& shader, bool useX)
 void Fence::init()
 {
 	FenceModel->init();
-	move();
+	move();	//static, only need to move it once.
 }
 
 void Fence::draw()

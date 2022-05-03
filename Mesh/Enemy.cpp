@@ -46,7 +46,7 @@ void Enemy::draw()
 	for (int i = 0; i < Bomblist.size(); i++)
 	{
 		Bomblist[i]->draw();
-		Bomblist[i]->bPlay = bPlay;
+		Bomblist[i]->bPlay = bPlay;	//update all the active bombs, editor mode = they stop too
 	}
 }
 

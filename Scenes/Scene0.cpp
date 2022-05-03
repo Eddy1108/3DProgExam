@@ -27,7 +27,7 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     temp->setName("Enemy");
 
 
-    //Task 8
+    //Task 8: Place all the trophies
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, 8.f, 2.f, true));
     temp->setName("RedTrophy0");
     mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 20.f, 10.f, 2.f, true));
@@ -111,7 +111,7 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     npc->mHeightmap = mHeightmap;
     npc->mTrophyList = BlueTrophies;
 
-    //Task 10
+    //Task 10: Place 2 fences that stop the player
     mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
     temp->setName("Fence1");
     temp->mPosition = glm::vec3(13.f, 10.f, 1.f);

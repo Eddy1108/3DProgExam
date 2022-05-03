@@ -32,10 +32,6 @@ void Scene::init()
     {
         (*it).second->init();
     }
-    for (auto it = mMap4.begin(); it != mMap4.end(); it++)
-    {
-        (*it).second->init();
-    }
 
 }
 
@@ -51,7 +47,7 @@ void Scene::draw()
     //Draw Plain Objects
     if (mMap.size() > 0)
     {
-
+        //Use correct shader
         GLint tempPMatrix = mShaderPrograms["plain"]->mPMatrixUniform;
         GLint tempVMatrix = mShaderPrograms["plain"]->mVMatrixUniform;
         glUseProgram(mShaderPrograms["plain"]->getProgram());
@@ -61,9 +57,9 @@ void Scene::draw()
         mCamera->update();
 
         //Move Player
-        mMap3["mia"]->move(0.1f, 0.1f, 0.1f);
+        mMap3["mia"]->move(0.1f, 0.1f, 0.1f);   //old dumb way of doint it but gonna let it stay, it works
 
-        //Move Camera
+        //Move Camera, look at player
         mCamera->lookAt(
             mMap3["mia"]->mCameraOffset,
             mMap3["mia"]->getPosition3D(),
@@ -112,6 +108,7 @@ void Scene::draw()
 
         glUniform1i(mShaderPrograms["phong"]->mTextureUniform, 1);
 
+        //Update light
         glUniform3f(mShaderPrograms["phong"]->mCameraPositionUniform, mCamera->mPosition.x, mCamera->mPosition.y, mCamera->mPosition.z);
         glUniform3f(mShaderPrograms["phong"]->mLightPositionUniform, mLight->getPosition3D().x, mLight->getPosition3D().y, mLight->getPosition3D().z);
 
@@ -133,11 +130,6 @@ void Scene::draw()
         }
     }
 
-    //Billboard Objects
-    if (mMap4.size() > 0)
-    {
-
-    }
 
         //Draw Skybox
     if (mSkybox)
@@ -156,7 +148,7 @@ void Scene::draw()
         glm::mat4 rotMatrix = glm::mat4(1.0f);
         rotMatrix = glm::rotate(glm::radians(90.f), glm::vec3(1.0f, 0.0f, 0.0f));
 
-        glUniformMatrix4fv(glGetUniformLocation(mShaderPrograms["skybox"]->getProgram(), "rotMatrix"), 1, GL_FALSE, glm::value_ptr(rotMatrix));
+        glUniformMatrix4fv(glGetUniformLocation(mShaderPrograms["skybox"]->getProgram(), "rotMatrix"), 1, GL_FALSE, glm::value_ptr(rotMatrix)); //i have z as up, so need to rotate skybox 90 degrees
         glUniformMatrix4fv(tempVMatrix, 1, GL_FALSE, glm::value_ptr(view));
         glUniformMatrix4fv(tempPMatrix, 1, GL_FALSE, glm::value_ptr(mCamera->mPMatrix));
 
