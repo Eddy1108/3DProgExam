@@ -70,19 +70,18 @@ void Sun::init()
 
 void Sun::draw()
 {
-    //mMatrix = glm::mat4(1.0f);
-    //glm::vec3 moveStep = glm::vec3(0.06f, 0.06f, 0.f);
-    //mMatrix = glm::translate(mMatrix, moveStep);
-    //mPosition += moveStep;
+    if (bPlay)
+    {
+        glm::vec3 rotDistance{ 10.f,10.f,10.f };
 
-    glm::vec3 rotDistance{ 10.f,10.f,10.f };
+        //Rotate Sun here
+        mMatrix = glm::translate(mMatrix, -rotDistance);
+        mMatrix = glm::rotate(mMatrix, glm::radians(-0.5f), glm::vec3{ 0.f,0.f,1.f });
+        mMatrix = glm::translate(mMatrix, rotDistance);
 
-    //Rotate Sun here
-    mMatrix = glm::translate(mMatrix, -rotDistance);
-    mMatrix = glm::rotate(mMatrix, glm::radians(-0.5f), glm::vec3{ 0.f,0.f,1.f });
-    mMatrix = glm::translate(mMatrix, rotDistance);
+        mPosition = glm::vec3{ mMatrix[3].x, mMatrix[3].y, mMatrix[3].z };
 
-    mPosition = glm::vec3{ mMatrix[3].x, mMatrix[3].y, mMatrix[3].z };
+    }
 
     SunModel->mMatrix = mMatrix;
     SunModel->draw();

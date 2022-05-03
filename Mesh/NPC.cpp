@@ -19,10 +19,10 @@ void NPC::init()
 
 void NPC::draw()
 {
-
-	move();
+	if (bPlay)
+		move();
 	
-
+	
 	NPCModel->draw();
 }
 

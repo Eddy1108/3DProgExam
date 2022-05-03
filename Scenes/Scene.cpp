@@ -43,10 +43,8 @@ void Scene::draw()
 {
     initializeOpenGLFunctions();
 
-    mCamera->bFollowPlayer = bPlayMode;
-    dynamic_cast<Player*>(mMap3["mia"])->bDrawCam = !bPlayMode;
-    dynamic_cast<XYZ*>(mMap["XYZ"])->bDraw = !bPlayMode;
- 
+    PauseObjects();
+
     //BEGIN
     mCamera->perspective(60, (float)16 / (float)9, 0.1f, 100.0);
 
@@ -341,5 +339,30 @@ void Scene::DrawAABB(glm::vec3 position, glm::vec3 extent)
     glBindVertexArray(0);
 
     //glUseProgram(prog);
+
+}
+
+void Scene::PauseObjects()
+{
+    mCamera->bFollowPlayer = bPlayMode;
+
+    if (dynamic_cast<Player*>(mMap3["mia"]))
+        dynamic_cast<Player*>(mMap3["mia"])->bDrawCam = !bPlayMode;
+
+    if (dynamic_cast<XYZ*>(mMap["XYZ"]))
+        dynamic_cast<XYZ*>(mMap["XYZ"])->bDraw = !bPlayMode;
+
+    if (dynamic_cast<Sun*>(mMap["Sun"]))
+        dynamic_cast<Sun*>(mMap["Sun"])->bPlay = bPlayMode;
+
+    if (dynamic_cast<Enemy*>(mMap["Enemy"]))
+        dynamic_cast<Enemy*>(mMap["Enemy"])->bPlay = bPlayMode;
+
+    if (dynamic_cast<NPC*>(mMap3["NPC"]))
+        dynamic_cast<NPC*>(mMap3["NPC"])->bPlay = bPlayMode;
+
+    
+    
+
 
 }

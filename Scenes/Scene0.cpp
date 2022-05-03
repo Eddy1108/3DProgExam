@@ -24,9 +24,6 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
 
     mObjects.push_back(temp = new Enemy(*mShaderPrograms["plain"], mQuadTre));
     temp->setName("Enemy");
-    mObjects.push_back(temp = new Bomb(*mShaderPrograms["plain"], mQuadTre));
-    temp->setName("Bomb0");
-
 
 
     //Task 8

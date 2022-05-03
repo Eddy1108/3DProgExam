@@ -24,26 +24,29 @@ void Enemy::init()
 
 void Enemy::draw()
 {
-	
-	move();
-
-	EnemyModel->draw();
-	
-	//Calculate 2 seconds passing and then spawn a bomb
-	auto TimeEnd = std::chrono::steady_clock::now();
-	long long test = std::chrono::duration_cast<std::chrono::seconds>(TimeEnd - TimeStart).count();
-	if (test > 2.f)
+	if (bPlay)
 	{
-		std::cout << "Bomb Spawned" << std::endl;
-		TimeStart = std::chrono::steady_clock::now();
 
-		SpawnBomb();
+		move();
+
+		//Calculate 2 seconds passing and then spawn a bomb
+		auto TimeEnd = std::chrono::steady_clock::now();
+		long long test = std::chrono::duration_cast<std::chrono::seconds>(TimeEnd - TimeStart).count();
+		if (test > 2.f)
+		{
+			std::cout << "Bomb Spawned" << std::endl;
+			TimeStart = std::chrono::steady_clock::now();
+
+			SpawnBomb();
+		}
+
 	}
-
+	EnemyModel->draw();
 
 	for (int i = 0; i < Bomblist.size(); i++)
 	{
 		Bomblist[i]->draw();
+		Bomblist[i]->bPlay = bPlay;
 	}
 }
 
@@ -110,7 +113,8 @@ void Bomb::init()
 
 void Bomb::draw()
 {
-	move();
+	if (bPlay)
+		move();
 
 	BombModel->draw();
 

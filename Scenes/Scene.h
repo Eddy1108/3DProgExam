@@ -15,7 +15,9 @@
 #include "Core/Shader.h"
 #include "Mesh/SkyBox.h"
 #include "Light/Light.h"
+#include "Light/Sun.h"
 #include "Mesh/Fence.h"
+#include "Mesh/Enemy.h"
 
 #include <unordered_map>
 #include "Core/quadtree.h"
@@ -33,6 +35,7 @@ public:
 	virtual void checkCollision();
 
 	void DrawAABB(glm::vec3 position, glm::vec3 extent);
+	void PauseObjects();
 
 
 	//Plain Objects

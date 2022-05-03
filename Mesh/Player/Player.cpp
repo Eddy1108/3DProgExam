@@ -45,71 +45,77 @@ void Player::move(float x, float y, float z)
 {
 	rotate = 0;
 
-	if (bStunned)
+	if (!bDrawCam)
 	{
-		TimeEnd = std::chrono::steady_clock::now();
 
-		auto test = std::chrono::duration_cast<std::chrono::seconds>(TimeEnd - TimeStart).count();
-		//std::cout << "STUN Start: " << test << std::endl;
 
-		if (test > 1.f)
+
+		if (bStunned)
 		{
-			bStunned = false;
+			TimeEnd = std::chrono::steady_clock::now();
+
+			auto test = std::chrono::duration_cast<std::chrono::seconds>(TimeEnd - TimeStart).count();
+			//std::cout << "STUN Start: " << test << std::endl;
+
+			if (test > 1.f)
+			{
+				bStunned = false;
+			}
+			else
+				return;
 		}
-		else
-			return;
+
+		if (SMove) mPosition += mSpeed * -mForward;
+
+		//If colliding with a fence, the player can only go backwards, BUG: Player can walk backwards through fences :)
+		if (!bBlocked)
+		{
+			if (WMove) mPosition += mSpeed * mForward;
+
+			if (AMove) rotate = 3;
+
+			if (DMove) rotate = -3;
+		}
+
+
+
+		glm::vec3 pos(mPosition.x, mPosition.y, mPosition.z);
+
+		if (mHeightmap && mHeightmap->IsInside(pos))
+		{
+			//mz = mHeightmap->getHeight(glm::vec3(mx, my, mz));
+			mPosition.z = mHeightmap->getHeight(pos);
+		}
+
+
+		mMatrix = glm::rotate(mMatrix, glm::radians(rotate), glm::vec3{ 0.f,0.f,1.f });
+
+		mMatrix[3].x = mPosition.x;
+		mMatrix[3].y = mPosition.y;
+		mMatrix[3].z = mPosition.z;
+
+		mForward = glm::rotate(mForward, glm::radians(rotate), mUp);
+
+
+		//Final stuff dont mind this
+		if (mBShape)
+		{
+			mBShape->mPosition = mPosition;
+		}
+		PlayerModel->mMatrix = mMatrix;
+
+		mCameraOffset = glm::vec3{ mPosition.x + -mForward.x * 10.f, mPosition.y + -mForward.y * 10.f, mPosition.z + 10.f };
+
+		if (StatusScreen)
+		{
+			StatusScreen->mPosition = mPosition + (mForward * glm::vec3(2.f));
+			StatusScreen->mPosition.z += 5.f;
+
+		}
+
+		//Reset is player is blocked;
+		bBlocked = false;
 	}
-
-	if (SMove) mPosition += mSpeed * -mForward;
-
-	//If colliding with a fence, the player can only go backwards, BUG: Player can walk backwards through fences :)
-	if (!bBlocked)
-	{
-		if (WMove) mPosition += mSpeed * mForward;
-
-		if (AMove) rotate = 3;
-
-		if (DMove) rotate = -3;
-	}
-
-
-
-	glm::vec3 pos(mPosition.x, mPosition.y, mPosition.z);
-
-	if (mHeightmap && mHeightmap->IsInside(pos))
-	{
-		//mz = mHeightmap->getHeight(glm::vec3(mx, my, mz));
-		mPosition.z = mHeightmap->getHeight(pos);
-	}
-
-
-	mMatrix = glm::rotate(mMatrix, glm::radians(rotate), glm::vec3{ 0.f,0.f,1.f });
-
-	mMatrix[3].x = mPosition.x;
-	mMatrix[3].y = mPosition.y;
-	mMatrix[3].z = mPosition.z;
-	
-	mForward = glm::rotate(mForward, glm::radians(rotate), mUp);
-
-
-	//Final stuff dont mind this
-	if (mBShape)
-	{
-		mBShape->mPosition = mPosition;
-	}
-	PlayerModel->mMatrix = mMatrix;
-
-	mCameraOffset = glm::vec3{ mPosition.x + -mForward.x * 10.f, mPosition.y + -mForward.y * 10.f, mPosition.z + 10.f };
-
-	if (StatusScreen)
-	{
-		StatusScreen->mPosition = mPosition + (mForward * glm::vec3(2.f));
-		StatusScreen->mPosition.z += 5.f;
-
-	}
-
-	//Reset is player is blocked;
-	bBlocked = false;
 }
 
 void Player::updateFakeCam()

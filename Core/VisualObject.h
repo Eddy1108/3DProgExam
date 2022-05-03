@@ -39,19 +39,14 @@ public:
 	CollisionShape* mBShape{ nullptr };
 
 	glm::vec3 mCameraOffset{ 1.f };
+	glm::vec3 mPosition;
 
 	std::vector<Vertex> mVertices;
 	std::vector<GLint> mIndices;
 
-	glm::vec3 mPosition;
+	bool bPlay{ true };
 
 protected:
-
-
-	//void loadTexture(std::string dir);
-	//void useTexture();
-
-
 
 	GLuint mVAO{ 0 };
 	GLuint mVBO{ 0 };
