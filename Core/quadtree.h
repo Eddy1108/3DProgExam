@@ -7,7 +7,6 @@
 
 #include "Core/VisualObject.h"
 #include "mesh/Player/InteractiveObject.h"
-#include "mesh/Trophy.h"
 #include "Core/CollisionShapes.h"
 
 
