@@ -7,7 +7,6 @@
 
 #include "mesh/Player/InteractiveObject.h"
 #include "Mesh/Player/Player.h"
-#include "Mesh/NPC.h"
 #include "Core/XYZ.h"
 #include "mesh/TriangleSurface.h"
 #include "Core/Camera.h"
@@ -16,8 +15,6 @@
 #include "Mesh/SkyBox.h"
 #include "Light/Light.h"
 #include "Light/Sun.h"
-#include "Mesh/Fence.h"
-#include "Mesh/Enemy.h"
 
 #include <unordered_map>
 #include "Core/quadtree.h"

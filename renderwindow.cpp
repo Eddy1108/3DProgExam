@@ -110,7 +110,7 @@ void RenderWindow::init()
     glBindVertexArray(0);       //unbinds any VertexArray - good practice
 
 
-    ////How to use textures;
+    ///How to use textures;
     //mTexture[0] = new Texture();
     //mTexture[1] = new Texture("../3Dprog22/Assets/tex/hund.bmp");
     ////Set the textures loaded to a texture slot

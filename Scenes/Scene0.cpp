@@ -23,65 +23,6 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     //mObjects.push_back(temp = new BezierCurve(*mShaderPrograms["plain"]));
     //temp->setName("Bezier");
 
-    mObjects.push_back(temp = new Enemy(*mShaderPrograms["plain"], mQuadTre));
-    temp->setName("Enemy");
-
-
-    //Task 8: Place all the trophies
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, 8.f, 2.f, true));
-    temp->setName("RedTrophy0");
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 20.f, 10.f, 2.f, true));
-    temp->setName("RedTrophy1");
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -12.f, 22.f, 2.f, true));
-    temp->setName("RedTrophy2");
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -15.f, -5.f, 2.f, true));
-    temp->setName("RedTrophy3");
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 18.f, -8.f, 2.f, true));
-    temp->setName("RedTrophy4");
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -2.f, -30.f, 2.f, true));
-    temp->setName("RedTrophy5");
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -26.f, 4.f, 2.f, true));
-    temp->setName("RedTrophy6");
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 8.f, -15.f, 2.f, true));
-    temp->setName("RedTrophy7");
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 15.f, 23.f, 2.f, true));
-    temp->setName("RedTrophy8");
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -17.f, -20.f, 2.f, true));
-    temp->setName("RedTrophy9");
-
-    std::vector<VisualObject*> BlueTrophies;
-
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 0.f, 8.f, 2.f, false));
-    temp->setName("BlueTrophy0");
-    BlueTrophies.push_back(temp);
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -9.f, 15.f, 2.f, false));
-    temp->setName("BlueTrophy1");
-    BlueTrophies.push_back(temp);
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 25.f, -22.f, 2.f, false));
-    temp->setName("BlueTrophy2");
-    BlueTrophies.push_back(temp);
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 10.f, -27.f, 2.f, false));
-    temp->setName("BlueTrophy3");
-    BlueTrophies.push_back(temp);
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 25.f, 20.f, 2.f, false));
-    temp->setName("BlueTrophy4");
-    BlueTrophies.push_back(temp);
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -6.f, -18.f, 2.f, false));
-    temp->setName("BlueTrophy5");
-    BlueTrophies.push_back(temp);
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -25.f, -15.f, 2.f, false));
-    temp->setName("BlueTrophy6");
-    BlueTrophies.push_back(temp);
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -30.f, 10.f, 2.f, false));
-    temp->setName("BlueTrophy7");
-    BlueTrophies.push_back(temp);
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], -32.f, 25.f, 2.f, false));
-    temp->setName("BlueTrophy8");
-    BlueTrophies.push_back(temp);
-    mObjects.push_back(temp = new Trophy(*mShaderPrograms["plain"], 32.f, 2.f, 2.f, false));
-    temp->setName("BlueTrophy9");
-    BlueTrophies.push_back(temp);
-
 
     ///Textured Objects
 //Use mObjects2!
@@ -103,73 +44,6 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects3.push_back(mHeightmap);
     mHeightmap->setName("Heightmap");
     mInteract->mHeightmap = mHeightmap;
-
-    //Task 9:
-    NPC* npc = new NPC(*mShaderPrograms["phong"]);
-    mObjects3.push_back(npc);
-    npc->setName("NPC");
-    npc->mHeightmap = mHeightmap;
-    npc->mTrophyList = BlueTrophies;
-
-    //Task 10: Place 2 fences that stop the player
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
-    temp->setName("Fence1");
-    temp->mPosition = glm::vec3(13.f, 10.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
-    temp->setName("Fence2");
-    temp->mPosition = glm::vec3(13.f, 12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
-    temp->setName("Fence3");
-    temp->mPosition = glm::vec3(13.f, 8.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
-    temp->setName("Fence4");
-    temp->mPosition = glm::vec3(13.f, 6.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
-    temp->setName("Fence5");
-    temp->mPosition = glm::vec3(13.f, 4.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
-    temp->setName("Fence6");
-    temp->mPosition = glm::vec3(13.f, 2.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
-    temp->setName("Fence7");
-    temp->mPosition = glm::vec3(13.f, 0.f, 1.f);
-
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence8");
-    temp->mPosition = glm::vec3(-10.f, -12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence9");
-    temp->mPosition = glm::vec3(-12.f, -12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence10");
-    temp->mPosition = glm::vec3(-14.f, -12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence11");
-    temp->mPosition = glm::vec3(-16.f, -12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence12");
-    temp->mPosition = glm::vec3(-18.f, -12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence13");
-    temp->mPosition = glm::vec3(-20.f, -12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence14");
-    temp->mPosition = glm::vec3(-22.f, -12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence15");
-    temp->mPosition = glm::vec3(-24.f, -12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence16");
-    temp->mPosition = glm::vec3(-8.f, -12.f, 1.f);
-    mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], false));
-    temp->setName("Fence17");
-    temp->mPosition = glm::vec3(-6.f, -12.f, 1.f);
-
-    //mObjects3.push_back(temp = new Fence(*mShaderPrograms["phong"], true));
-    //temp->setName("Fence18");
-    //temp->mPosition = glm::vec3(21.f, -11.f, 1.f);
-
-    //Fence 18, 17 & 16 are cursed!!!
 
     ///Dump it all into Unordered lists
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)

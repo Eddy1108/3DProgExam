@@ -157,7 +157,7 @@ void Scene::draw()
         glDepthFunc(GL_LESS);
     }
 
-    checkCollision();
+    //checkCollision();
 
     drawCollision();
 
@@ -210,48 +210,48 @@ void Scene::drawCollision()
 
 void Scene::checkCollision()
 {
-    glm::vec2 playerPos = mMap3["mia"]->getPosition2D();
-    glm::vec2 NPCPos = mMap3["NPC"]->getPosition2D();
+    //glm::vec2 playerPos = mMap3["mia"]->getPosition2D();
+    //glm::vec2 NPCPos = mMap3["NPC"]->getPosition2D();
 
     //Check Collision for Player
-    QuadTre* subtre = mQuadTre->find(playerPos);
-    for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
-    {
-        if ((*it)->mBShape && dynamic_cast<Trophy*>(*it) != nullptr && dynamic_cast<Trophy*>(*it)->bIsRed && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
-        {
-            
-            if ((*it)->activate())
-            {
-                dynamic_cast<Player*>(mMap3["mia"])->CollectTrophy();
-            }
-            
-        }
+    //QuadTre* subtre = mQuadTre->find(playerPos);
+    //for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
+    //{
+    //    if ((*it)->mBShape && dynamic_cast<Trophy*>(*it) != nullptr && dynamic_cast<Trophy*>(*it)->bIsRed && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
+    //    {
+    //        
+    //        if ((*it)->activate())
+    //        {
+    //            dynamic_cast<Player*>(mMap3["mia"])->CollectTrophy();
+    //        }
+    //        
+    //    }
 
-        if ((*it)->mBShape && dynamic_cast<Fence*>(*it) != nullptr && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
-        {
-            dynamic_cast<Player*>(mMap3["mia"])->bBlocked = true;
-        }
-    }
+    //    //if ((*it)->mBShape && dynamic_cast<Fence*>(*it) != nullptr && mMap3["mia"]->mBShape->overlap((*it)->mBShape))
+    //    //{
+    //    //    dynamic_cast<Player*>(mMap3["mia"])->bBlocked = true;
+    //    //}
+    //}
 
-    //Check Collision for NPC
-    subtre = mQuadTre->find(NPCPos);
-    for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
-    {
-        if ((*it)->mBShape && dynamic_cast<Trophy*>(*it) != nullptr && !(dynamic_cast<Trophy*>(*it)->bIsRed) && mMap3["NPC"]->mBShape->overlap((*it)->mBShape))
-        {
+    ////Check Collision for NPC
+    //subtre = mQuadTre->find(NPCPos);
+    //for (auto it = subtre->m_Objects.begin(); it < subtre->m_Objects.end(); it++)
+    //{
+    //    if ((*it)->mBShape && dynamic_cast<Trophy*>(*it) != nullptr && !(dynamic_cast<Trophy*>(*it)->bIsRed) && mMap3["NPC"]->mBShape->overlap((*it)->mBShape))
+    //    {
 
-            if ((*it)->activate())
-            {
-                if ((dynamic_cast<NPC*>(mMap3["NPC"])->CollectTrophy())) 
-                {
-                    std::cout << "ENEMY WIN" << std::endl;
-                    dynamic_cast<Player*>(mMap3["mia"])->WinState = 2;
-                }
+    //        if ((*it)->activate())
+    //        {
+    //            if ((dynamic_cast<NPC*>(mMap3["NPC"])->CollectTrophy())) 
+    //            {
+    //                std::cout << "ENEMY WIN" << std::endl;
+    //                dynamic_cast<Player*>(mMap3["mia"])->WinState = 2;
+    //            }
 
-            }
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
     //Check Collision for BOMB
 
@@ -346,15 +346,5 @@ void Scene::PauseObjects()
 
     if (dynamic_cast<Sun*>(mMap["Sun"]))
         dynamic_cast<Sun*>(mMap["Sun"])->bPlay = bPlayMode;
-
-    if (dynamic_cast<Enemy*>(mMap["Enemy"]))
-        dynamic_cast<Enemy*>(mMap["Enemy"])->bPlay = bPlayMode;
-
-    if (dynamic_cast<NPC*>(mMap3["NPC"]))
-        dynamic_cast<NPC*>(mMap3["NPC"])->bPlay = bPlayMode;
-
-    
-    
-
 
 }
