@@ -3,13 +3,10 @@
 
 #include "mesh/Kube.h"
 #include "mesh/Graph.h"
-#include "mesh/NPC_Cube.h"
-#include "mesh/Trophy.h"
 #include "mesh/OctahedronBall.h"
 #include "mesh/Disc.h"
 #include "Math/BezierCurve.h"
-#include "mesh/Door.h"
-#include "mesh/House.h"
+
 
 #include "mesh/Triangle.h"
 #include "Light/Light.h"

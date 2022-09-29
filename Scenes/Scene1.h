@@ -1,10 +1,8 @@
 #pragma once
 #include "Scene.h"
 
-#include "mesh/Trophy.h"
 #include "mesh/OctahedronBall.h"
-#include "mesh/Door.h"
-#include "mesh/House.h"
+
 
 class Scene1 : public Scene
 {
