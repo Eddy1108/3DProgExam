@@ -205,7 +205,6 @@
     <ClCompile Include="Mesh\OctahedronBall.cpp" />
     <ClCompile Include="Mesh\Player\Player.cpp" />
     <ClCompile Include="Mesh\PointCloud.cpp" />
-    <ClCompile Include="Mesh\rollingball.cpp" />
     <ClCompile Include="Shaders\PhongShader.cpp" />
     <ClCompile Include="Shaders\PlainShader.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
@@ -251,7 +250,6 @@
     <ClInclude Include="Mesh\Player\Player.h" />
     <ClInclude Include="Mesh\NPC.h" />
     <ClInclude Include="Mesh\PointCloud.h" />
-    <ClInclude Include="Mesh\rollingball.h" />
     <ClInclude Include="Shaders\PhongShader.h" />
     <ClInclude Include="Shaders\PlainShader.h" />
     <ClInclude Include="Scenes\Scene.h" />

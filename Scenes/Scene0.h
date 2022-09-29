@@ -15,9 +15,11 @@
 #include "Mesh/Billboard.h"
 #include "Mesh/Player/Player.h"
 
-
 #include "Mesh/ObjLoader.h"
 #include "Mesh/SkyBox.h"
+
+
+#include "Mesh/PointCloud.h"
 
 class Scene0 : public Scene
 {
@@ -27,6 +29,5 @@ public:
 
 	void init() override;
 	void draw() override;
-
 };
 

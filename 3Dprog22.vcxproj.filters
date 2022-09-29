@@ -65,16 +65,10 @@
     <ClCompile Include="Mesh\Disc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh\Door.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh\Graph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mesh\Heightmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh\House.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mesh\Player\InteractiveObject.cpp">
@@ -84,9 +78,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Light\Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh\NPC_Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mesh\ObjLoader.cpp">
@@ -128,9 +119,6 @@
     <ClCompile Include="Mesh\TriangleSurface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh\Trophy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -167,19 +155,7 @@
     <ClCompile Include="Mesh\Player\Player.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh\NPC.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh\Enemy.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh\Fence.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh\PointCloud.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh\rollingball.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -314,9 +290,6 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Mesh\PointCloud.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh\rollingball.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
