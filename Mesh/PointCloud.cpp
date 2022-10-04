@@ -1,6 +1,7 @@
 #include "PointCloud.h"
 
 #include "Math/SortCoords.h"
+#include <iomanip>
 
 PointCloud::PointCloud(Shader& shader) : VisualObject{shader}
 {
@@ -21,7 +22,7 @@ void PointCloud::init()
 	std::ifstream file;
 
 	//Open file
-	file.open("Surface/AnkerskogenFixed.txt");
+	file.open("Surface/GlitterholetShortened.txt");
 	//file.open("Surface/test.txt");
 	//file.open("Surface/rindal.txt");
 
@@ -40,7 +41,7 @@ void PointCloud::init()
 
 	Vertex vertex;
 
-	for (int i = 0; i < size; i+=100)
+	for (int i = 0; i < size; i++)
 	{
 		file >> x >> y >> z;
 		//std::cout << "\nCoords: " << x << ", " << y << ", " << z << std::endl;
@@ -67,7 +68,7 @@ void PointCloud::init()
 	//}
 
 	//Find X min and Y min for file (Dont use normally)
-	//std::cout << "X MIN:" << SortCoords::FindXMin(mVertices) << "\nY MIN: " << SortCoords::FindYMin(mVertices) << std::endl;
+	std::cout << std::fixed << std::setprecision(2) << "X MIN: " << SortCoords::FindXMin(mVertices) << "\nY MIN: " << SortCoords::FindYMin(mVertices) << std::endl;
 	//std::cout << "X MAX:" << SortCoords::FindXMax(mVertices) << "\nY MAX: " << SortCoords::FindYMax(mVertices) << std::endl;
 
 	glGenVertexArrays(1, &mVAO);
@@ -93,11 +94,15 @@ void PointCloud::init()
 		reinterpret_cast<GLvoid*>(3 * sizeof(GLfloat)));
 	glEnableVertexAttribArray(1);
 
+	//glPointSize(100);
+
 	glBindVertexArray(0);
 }
 
 void PointCloud::draw()
 {
+	glPointSize(100);
+
 	glBindVertexArray(mVAO);
 	glUniformMatrix4fv(mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
 	glDrawArrays(GL_POINTS, 0, mVertices.size());

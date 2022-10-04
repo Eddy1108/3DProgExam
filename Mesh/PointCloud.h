@@ -18,21 +18,21 @@ public:
 	void draw() override;
 
 	//For ankerskogen
-	long double mScaleMultiplyX{ 1.f };
-	long double mScaleMultiplyY{ 1.f };
-	long double mScaleMultiplyZ{ 0.01f };
+	//long double mScaleMultiplyX{ 1.f };
+	//long double mScaleMultiplyY{ 1.f };
+	//long double mScaleMultiplyZ{ 0.01f };
 
-	long double mOffsetX{ 612000 };
-	long double mOffsetY{ 612497 };
+	//long double mOffsetX{ 612000 };
+	//long double mOffsetY{ 612497 };
 
 
 	//For testing
-	//long double mScaleMultiplyX{ 1.f };
-	//long double mScaleMultiplyY{ 1.f };
-	//long double mScaleMultiplyZ{ 1.f };
+	long double mScaleMultiplyX{ 1.f };
+	long double mScaleMultiplyY{ 1.f };
+	long double mScaleMultiplyZ{ 1.f };
 
-	//long double mOffsetX{ 0 };
-	//long double mOffsetY{ 0 };
+	long double mOffsetX{ 0 };
+	long double mOffsetY{ 0 };
 
 	//For Rindal
 	//long double mScaleMultiplyX{ 1.f };

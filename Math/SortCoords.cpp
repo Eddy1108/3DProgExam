@@ -59,7 +59,7 @@ float SortCoords::FindYMin(std::vector<Vertex>& points)
 	if (points.size() < 1)
 		return -1.f;
 
-	float miny = points[0].m_xyz[0];
+	float miny = points[0].m_xyz[1];
 	for (int i = 1; i < points.size(); i++)
 	{
 		if (miny > points[i].m_xyz[1])

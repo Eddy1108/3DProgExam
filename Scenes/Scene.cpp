@@ -62,7 +62,7 @@ void Scene::draw()
         mMap3["mia"]->move(0.1f, 0.1f, 0.1f);   //old dumb way of doint it but gonna let it stay, it works
 
         //Move Ball
-        mMap["RollingBall"]->move(RenderWindow::mDeltaTime);
+        //mMap["RollingBall"]->move(RenderWindow::mDeltaTime);
 
         //Move Camera, look at player
         mCamera->lookAt(
