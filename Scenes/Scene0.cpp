@@ -21,6 +21,14 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
 
     mObjects.push_back(new PointCloud(*mShaderPrograms["plain"]));
 
+    LAZSurface* surface = new LAZSurface("../3DProgExam/Surface/AnkerskogenFixed.txt", QVector2D(100,100), *mShaderPrograms["plain"]);
+    mObjects.push_back(surface);
+    surface->setName("TriangleSurface");
+
+    temp = new RollingBall(3, *mShaderPrograms["plain"], surface);
+    mObjects.push_back(temp);
+    temp->setName("RollingBall");
+
     ///Textured Objects
 //Use mObjects2!
 
@@ -34,11 +42,6 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects3.push_back(mInteract);
     mInteract->setName("mia");
     dynamic_cast<Player*>(mInteract)->mCam = mCamera;
-
-    Heightmap* mHeightmap = new Heightmap(*mShaderPrograms["phong"]);
-    mObjects3.push_back(mHeightmap);
-    mHeightmap->setName("Heightmap");
-    mInteract->mHeightmap = mHeightmap;
 
     ///Dump it all into Unordered lists
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)

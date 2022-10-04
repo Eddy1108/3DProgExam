@@ -1,5 +1,7 @@
 #include "PointCloud.h"
 
+#include "Math/SortCoords.h"
+
 PointCloud::PointCloud(Shader& shader) : VisualObject{shader}
 {
 	mName = "PointCloud";
@@ -13,12 +15,15 @@ void PointCloud::init()
 {
 	initializeOpenGLFunctions();
 
+	mMatrix = glm::mat4(1.0f);
+
 	//Initialize Geometry
 	std::ifstream file;
 
 	//Open file
 	file.open("Surface/AnkerskogenFixed.txt");
 	//file.open("Surface/test.txt");
+	//file.open("Surface/rindal.txt");
 
 	if (!file)
 	{
@@ -29,13 +34,13 @@ void PointCloud::init()
 	long double x{ 0 };
 	long double y{ 0 };
 	long double z{ 0 };
-	long double size{ 0 };
+	int size{ 0 };
 	file >> size;
 	std::cout << "\nSIZE: " << size << std::endl;
 
 	Vertex vertex;
 
-	for (long double i = 0; i < size; i+= 100)
+	for (int i = 0; i < size; i+=100)
 	{
 		file >> x >> y >> z;
 		//std::cout << "\nCoords: " << x << ", " << y << ", " << z << std::endl;
@@ -43,11 +48,27 @@ void PointCloud::init()
 		vertex.m_xyz[1] = (y - mOffsetY) * mScaleMultiplyY;
 		vertex.m_xyz[2] = z * mScaleMultiplyZ;
 
+		vertex.m_normal[0] = 1; vertex.m_normal[1] = 1; vertex.m_normal[2] = 1;
+		vertex.m_uv[0] = 0; vertex.m_uv[1] = 1;
+
 		//std::cout << "\nNew Coords: " << vertex.m_xyz[0] << ", " << vertex.m_xyz[1] << ", " << vertex.m_xyz[2] << std::endl;
 
 		mVertices.push_back(vertex);
 	}
 	file.close();
+
+
+	//SortCoords::SortX(mVertices);
+	//SortCoords::SortY(mVertices);
+
+	//for (int i = 0; i < mVertices.size(); i++)
+	//{
+	//	std::cout << "\nSORTED: " << mVertices[i].m_xyz[0] << ", " << mVertices[i].m_xyz[1] << ", " << mVertices[i].m_xyz[2] << std::endl;
+	//}
+
+	//Find X min and Y min for file (Dont use normally)
+	//std::cout << "X MIN:" << SortCoords::FindXMin(mVertices) << "\nY MIN: " << SortCoords::FindYMin(mVertices) << std::endl;
+	//std::cout << "X MAX:" << SortCoords::FindXMax(mVertices) << "\nY MAX: " << SortCoords::FindYMax(mVertices) << std::endl;
 
 	glGenVertexArrays(1, &mVAO);
 	glBindVertexArray(mVAO);
@@ -62,7 +83,7 @@ void PointCloud::init()
 	glEnableVertexAttribArray(0);
 
 	// 2nd attribute buffer : colors
-// Same parameter list as above but attribute and offset is adjusted accoringly
+	// Same parameter list as above but attribute and offset is adjusted accoringly
 	glVertexAttribPointer(
 		1,
 		3,
@@ -80,4 +101,5 @@ void PointCloud::draw()
 	glBindVertexArray(mVAO);
 	glUniformMatrix4fv(mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
 	glDrawArrays(GL_POINTS, 0, mVertices.size());
+	glBindVertexArray(0);
 }

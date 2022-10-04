@@ -57,7 +57,7 @@ public:
 	//Shader Storage
 	std::unordered_map<std::string, Shader*> mShaderPrograms;
 
-	bool bPlayMode{ true };
+	bool bPlayMode{ false };
 	
 };
 

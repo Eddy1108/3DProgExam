@@ -22,6 +22,8 @@
 #include "Shaders/SkyBoxShader.h"
 #include "Shaders/BillboardShader.h"
 
+#include <chrono>
+
 class QOpenGLContext;
 class Shader;
 class MainWindow;
@@ -48,6 +50,8 @@ public:
 
     inline static glm::vec3 triangle[3];
 
+    inline static float mDeltaTime{ 0 };
+
 private slots:
     void render();          //the actual render - function
 
@@ -71,8 +75,6 @@ private:
     glm::mat4 mPmatrix1{ 1.0f };
     glm::mat4 mVMatrix{ 1.0f };
     glm::mat4 mMVPmatrix{1.0f};
-
-
 
     QTimer *mRenderTimer{nullptr};           //timer that drives the gameloop
     QElapsedTimer mTimeStart;               //time variable that reads the calculated FPS

@@ -32,7 +32,7 @@ public:
 	void setName(std::string name);
 	std::string getName() const;
 
-	glm::mat4 mMatrix;
+	glm::mat4 mMatrix{ 1 };
 	Shader& mShader;
 	float mx, my, mz; // position
 
@@ -55,8 +55,8 @@ protected:
 
 	GLint mMatrixUniform{ 0 };
 
-	glm::mat4 mRotation;
-	glm::mat4 mScale;
+	glm::mat4 mRotation{ 1 };
+	glm::mat4 mScale{ 1 };
 	glm::vec3 mVelocity;
 
 	std::string mName;

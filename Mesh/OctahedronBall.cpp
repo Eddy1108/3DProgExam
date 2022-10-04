@@ -90,13 +90,6 @@ void OctahedronBall::subDivide(const QVector3D& a, const QVector3D& b, const QVe
 	}
 }
 
-//!
-//! \brief OctahedronBall::oktaederUnitBall() creates 8 unit ball vertices and call subDivide()
-//!
-//! If the parameter n of the constructor OctahedronBall() is zero, the result will be the
-//! original octahedron consisting of 8 triangles with duplicated vertices.
-//!
-
 void OctahedronBall::oktaederUnitBall()
 {
 	QVector3D v0{ 0, 0, 1 };

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <glm/glm.hpp>
+#include "qvector3d.h"
 
 class Vertex
 {
@@ -18,8 +19,11 @@ public:
 
 	Vertex();
 	Vertex(float x, float y, float z, float r, float g, float b, float u = 0, float v = 1);
+	
+	QVector3D getPos();
 
 	glm::vec3 getXYZ();
+
 
 };
 

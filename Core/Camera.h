@@ -24,7 +24,7 @@ public:
 
 	glm::vec3 mUp = glm::vec3(0.0f, 0.0f, 1.0f);
 	glm::vec3 mOrientation = glm::vec3(0.0f, 1.0f, 0.0f);
-	glm::vec3 mPosition = glm::vec3(0.f, -10.f, 10.f); //Default Position
+	glm::vec3 mPosition = glm::vec3(0.f, -1.f, -0.f); //Default Position
 
 	Camera();
 	void init(GLint pMatrixUniform, GLint vMatrixUniform);

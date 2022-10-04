@@ -1,4 +1,5 @@
 #include "Vertex.h"
+#include "qvector3d.h"
 
 std::ostream& operator<< (std::ostream& os, const Vertex& v) {
 	os << std::fixed;
@@ -39,4 +40,9 @@ Vertex::Vertex(float x, float y, float z, float r, float g, float b, float u, fl
 glm::vec3 Vertex::getXYZ()
 {
 	return glm::vec3(m_xyz[0], m_xyz[1], m_xyz[2]);
+}
+
+QVector3D Vertex::getPos()
+{
+	return QVector3D(m_xyz[0], m_xyz[1], m_xyz[2]);
 }

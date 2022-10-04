@@ -1,5 +1,7 @@
 #include "Scene.h"
 
+#include "renderwindow.h"
+
 Scene::Scene(std::unordered_map<std::string, Shader*> shaders)
 	: mShaderPrograms{shaders}
 {
@@ -58,6 +60,9 @@ void Scene::draw()
 
         //Move Player
         mMap3["mia"]->move(0.1f, 0.1f, 0.1f);   //old dumb way of doint it but gonna let it stay, it works
+
+        //Move Ball
+        mMap["RollingBall"]->move(RenderWindow::mDeltaTime);
 
         //Move Camera, look at player
         mCamera->lookAt(
@@ -159,7 +164,7 @@ void Scene::draw()
 
     //checkCollision();
 
-    drawCollision();
+    //drawCollision();
 
 }
 

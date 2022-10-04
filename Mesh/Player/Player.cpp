@@ -25,20 +25,20 @@ void Player::init()
 
 void Player::draw()
 {
-	CheckWinLose();
+	//CheckWinLose();
 
-	PlayerModel->draw();
-	
-	updateFakeCam();
+	//PlayerModel->draw();
+	//
+	//updateFakeCam();
 
-	if (bDrawCam)
-	{
-		CameraModel->draw();
-	}
-	if (StatusScreen)
-	{
-		StatusScreen->draw();
-	}
+	//if (bDrawCam)
+	//{
+	//	//CameraModel->draw();
+	//}
+	//if (StatusScreen)
+	//{
+	//	//StatusScreen->draw();
+	//}
 }
 
 void Player::move(float x, float y, float z)

@@ -17,14 +17,29 @@ public:
 	void init() override;
 	void draw() override;
 
-	long double mScaleMultiplyX{ 0.1f };
-	long double mScaleMultiplyY{ 0.1f };
-	long double mScaleMultiplyZ{ 0.001f };
+	//For ankerskogen
+	long double mScaleMultiplyX{ 1.f };
+	long double mScaleMultiplyY{ 1.f };
+	long double mScaleMultiplyZ{ 0.01f };
 
-	long double mOffsetX{ 612500 };
-	long double mOffsetY{ 6742790 };
+	long double mOffsetX{ 612000 };
+	long double mOffsetY{ 612497 };
+
+
+	//For testing
+	//long double mScaleMultiplyX{ 1.f };
+	//long double mScaleMultiplyY{ 1.f };
+	//long double mScaleMultiplyZ{ 1.f };
 
 	//long double mOffsetX{ 0 };
 	//long double mOffsetY{ 0 };
+
+	//For Rindal
+	//long double mScaleMultiplyX{ 1.f };
+	//long double mScaleMultiplyY{ 1.f };
+	//long double mScaleMultiplyZ{ 0.01f };
+
+	//long double mOffsetX{ 509170 };
+	//long double mOffsetY{ 509343 };
 };
 

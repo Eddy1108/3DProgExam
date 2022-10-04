@@ -124,6 +124,8 @@ void RenderWindow::init()
 // Called each frame - doing the rendering!!!
 void RenderWindow::render()
 {
+    auto start = std::chrono::system_clock::now();
+
     mTimeStart.restart(); //restart FPS clock
     mContext->makeCurrent(this); //must be called every frame (every time mContext->swapBuffers is called)
 
@@ -144,6 +146,11 @@ void RenderWindow::render()
     checkForGLerrors();
 
     mContext->swapBuffers(this);
+
+    auto end = std::chrono::system_clock::now();
+    auto ElapsedSeconds = end - start;
+    mDeltaTime = std::chrono::duration<double>(ElapsedSeconds).count();
+    //std::cout << "DELTATIME:" << mDeltaTime << std::endl;
 }
 
 void RenderWindow::exposeEvent(QExposeEvent *)
@@ -331,8 +338,8 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
         {
             Scenes[activeScene]->mCamera->AMove = true;;
         }
-        else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->AMove = true;
+        //else
+        //    static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->AMove = true;
         
     }
     if (event->key() == Qt::Key_D)
@@ -342,8 +349,8 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
         {
             Scenes[activeScene]->mCamera->DMove = true;
         }
-        else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->DMove = true;
+        //else
+        //    static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->DMove = true;
 
     }
 
@@ -353,8 +360,8 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
         {
             Scenes[activeScene]->mCamera->SMove = true;
         }
-        else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->SMove = true;
+        //else
+        //    static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->SMove = true;
 
     }
     if (event->key() == Qt::Key_W)
@@ -364,8 +371,8 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
             Scenes[activeScene]->mCamera->WMove = true;
             
         }
-        else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->WMove = true;
+        //else
+        //    static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->WMove = true;
 
 
     }
@@ -380,8 +387,8 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
         {
             Scenes[activeScene]->mCamera->QMove = true;
         }
-        else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->QMove = true;
+        //else
+        //    static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->QMove = true;
     }
 
     if (event->key() == Qt::Key_E)
@@ -390,8 +397,8 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
         {
             Scenes[activeScene]->mCamera->EMove = true;
         }
-        else
-            static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->EMove = true;
+        //else
+        //    static_cast<InteractiveObject*>(Scenes[activeScene]->mMap3["mia"])->EMove = true;
 
     }
 }

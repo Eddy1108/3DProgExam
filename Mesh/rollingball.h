@@ -3,37 +3,47 @@
 
 #include "octahedronball.h"
 #include "trianglesurface.h"
-#include "Math/Barycentric.h"
+//#include "Math/Barycentric.h"
 
 class Line;
+class LAZSurface;
 
 class RollingBall : public OctahedronBall
 {
 public:
-    RollingBall(int n);
+    RollingBall(int n, Shader& shader, VisualObject* surface);
     ~RollingBall() override;
-    void init(GLint matrixUniform) override;
+    void init() override;
     void draw() override;
-    void move(double* dt) override;
-    void setSurface(VisualObject* surface);
-    glm::vec3 getPosition();
-    glm::vec3 findNormal(glm::vec3 v0, glm::vec3 v1, glm::vec3 v2);
+    void move(float dt) override;
+    void setSurface(LAZSurface* surface);
+    QVector3D getPosition();
+    QVector3D findNormal(QVector3D v0, QVector3D v1, QVector3D v2);
+    QVector3D abs(QVector3D vector); // Finds the absolute value
 protected:
-    VisualObject* triangle_surface{nullptr};
+    VisualObject* mSurface{ nullptr };
 private:
-    int oldTriangleIndex{-1};
-    glm::vec3 oldNormal{0.0, 0.0, 1.0};
-    glm::vec3 mVelocity{0.5,0,0}; // Her gir vi den en litt ekstra start fart, for at den skal trille over kanten
-    glm::vec3 mAcceleration{0,0,0};
-    glm::vec3 mGravity{0,0,-9.80665};
+    QMatrix4x4 mPos;
+    QMatrix4x4 mScale1;
+    QMatrix4x4 mMatrix1;
 
-    float mMass {0.0175f}; //kg
-    float mRadius {0.0175f}; // m
+    int oldTriangleIndex{ -1 };
+    QVector3D oldNormal{ 0.0, 0.0, 1.0 };
+    QVector3D mVelocity{ 0.00,0,0 }; // Her gir vi den en litt ekstra start fart, for at den skal trille over kanten
+    QVector3D mAcceleration{ 0,0,0 };
+    QVector3D mGravity{ 0,0,-9.80665 };
+    QVector3D mFrictionForce{ 0,0,0 };
 
-    float timeSlowDown {1};
+
+    float mGroundFriction = 0.1f; // drag is not affected by surface area, but instead a constant force
+    float mMass{ 0.0175f }; //kg
+    //float mRadius {0.0175f}; // m
+    float mRadius{ 1.0f };
+
+    float timeSlowDown{ 1 };
 
     //Debug
-    Line* mVelocityLine {nullptr};
-    Line* mAccelerationLine {nullptr};
+    Line* mVelocityLine{ nullptr };
+    Line* mAccelerationLine{ nullptr };
 };
 #endif // ROLLINGBALL_H

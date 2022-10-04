@@ -158,6 +158,18 @@
     <ClCompile Include="Mesh\PointCloud.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh\line.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\rollingball.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\LAZSurface.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh\Equidistance.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Barycentric.h">
@@ -290,6 +302,18 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Mesh\PointCloud.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\line.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\rollingball.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\LAZSurface.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\Equidistance.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

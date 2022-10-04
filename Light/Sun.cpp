@@ -70,24 +70,24 @@ void Sun::init()
 
 void Sun::draw()
 {
-    if (bPlay)
-    {
-        glm::vec3 rotDistance{ 10.f,10.f,10.f };
-
-        //Rotate Sun
-        mMatrix = glm::translate(mMatrix, -rotDistance);
-        mMatrix = glm::rotate(mMatrix, glm::radians(-0.5f), glm::vec3{ 0.f,0.f,1.f });
-        mMatrix = glm::translate(mMatrix, rotDistance);
-
-        mPosition = glm::vec3{ mMatrix[3].x, mMatrix[3].y, mMatrix[3].z };
-
-    }
-
-    SunModel->mMatrix = mMatrix;
-    SunModel->draw();
-
-    glBindVertexArray(mVAO);
-    glUniformMatrix4fv(mShader.mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
-    glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, nullptr);
-    glBindVertexArray(0);
+//    if (bPlay)
+//    {
+//        glm::vec3 rotDistance{ 10.f,10.f,10.f };
+//
+//        //Rotate Sun
+//        mMatrix = glm::translate(mMatrix, -rotDistance);
+//        mMatrix = glm::rotate(mMatrix, glm::radians(-0.5f), glm::vec3{ 0.f,0.f,1.f });
+//        mMatrix = glm::translate(mMatrix, rotDistance);
+//
+//        mPosition = glm::vec3{ mMatrix[3].x, mMatrix[3].y, mMatrix[3].z };
+//
+//    }
+//
+//    SunModel->mMatrix = mMatrix;
+//    SunModel->draw();
+//
+//    glBindVertexArray(mVAO);
+//    glUniformMatrix4fv(mShader.mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
+//    glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, nullptr);
+//    glBindVertexArray(0);
 }

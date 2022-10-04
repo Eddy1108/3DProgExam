@@ -20,8 +20,9 @@ TriangleSurface::TriangleSurface(Shader& shader)
 TriangleSurface::TriangleSurface(std::string filnavn, Shader& shader)
 	: VisualObject(shader)
 {
-	readFile(filnavn);
 	mMatrix = glm::mat4(1.0f);
+	readFile(filnavn);
+	
 }
 
 TriangleSurface::~TriangleSurface()
@@ -42,6 +43,9 @@ void TriangleSurface::readFile(std::string filnavn) {
 			mVertices.push_back(vertex);
 		}
 		inn.close();
+	}
+	else {
+		std::cout << "\n\nERROR: FILE NOT FOUND\n" << std::endl;
 	}
 }
 

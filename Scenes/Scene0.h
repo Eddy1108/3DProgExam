@@ -20,9 +20,12 @@
 
 
 #include "Mesh/PointCloud.h"
+#include "Mesh/LAZSurface.h"
+#include "Mesh/rollingball.h"
 
 class Scene0 : public Scene
 {
+
 public:
 	Scene0(std::unordered_map<std::string, Shader*> shaders);
 	~Scene0();
