@@ -52,6 +52,9 @@ public:
 
     inline static float mDeltaTime{ 0 };
 
+    inline static bool bDrawPointCloud{ false };
+    inline static bool bDrawEquidistance{ true };
+
 private slots:
     void render();          //the actual render - function
 

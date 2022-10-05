@@ -31,8 +31,9 @@ public:
 	long double mScaleMultiplyY{ 1.f };
 	long double mScaleMultiplyZ{ 1.f };
 
-	long double mOffsetX{ 0 };
-	long double mOffsetY{ 0 };
+	long double mOffsetX{ 473213.f + 1110 / 2 };
+	long double mOffsetY{ 6835647.f + 2110 / 2 };
+	long double mOffsetZ{ 1700 };
 
 	//For Rindal
 	//long double mScaleMultiplyX{ 1.f };

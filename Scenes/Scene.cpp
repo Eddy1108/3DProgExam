@@ -44,7 +44,7 @@ void Scene::draw()
     PauseObjects();
 
     //BEGIN
-    mCamera->perspective(60, (float)16 / (float)9, 0.1f, 100.0);
+    mCamera->perspective(60, (float)16 / (float)9, 0.1f, 5000.0);
 
     //Draw Plain Objects
     if (mMap.size() > 0)
@@ -62,7 +62,7 @@ void Scene::draw()
         mMap3["mia"]->move(0.1f, 0.1f, 0.1f);   //old dumb way of doint it but gonna let it stay, it works
 
         //Move Ball
-        //mMap["RollingBall"]->move(RenderWindow::mDeltaTime);
+        mMap["RollingBall"]->move(RenderWindow::mDeltaTime);
 
         //Move Camera, look at player
         mCamera->lookAt(

@@ -19,15 +19,15 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(mLight);
     mLight->setName("Sun");
 
-    mObjects.push_back(new PointCloud(*mShaderPrograms["plain"]));
+    //mObjects.push_back(new PointCloud(*mShaderPrograms["plain"]));
 
-    //LAZSurface* surface = new LAZSurface("../3DProgExam/Surface/GlitterholetShortened.txt", QVector2D(600,300), *mShaderPrograms["plain"], QVector3D(-473213.f - 1110 / 2, -6835647.f - 2110 / 2, -1734.f));
-    //mObjects.push_back(surface);
-    //surface->setName("TriangleSurface");
+    LAZSurface* surface = new LAZSurface("../3DProgExam/Surface/GlitterholetShortened.txt", QVector2D(600,300), *mShaderPrograms["plain"], QVector3D(-473213.f - 1110 / 2, -6835647.f - 2110 / 2, -1734.f));
+    mObjects.push_back(surface);
+    surface->setName("LAZSurface");
 
-    //temp = new RollingBall(3, *mShaderPrograms["plain"], surface);
-    //mObjects.push_back(temp);
-    //temp->setName("RollingBall");
+    temp = new RollingBall(3, *mShaderPrograms["plain"], surface);
+    mObjects.push_back(temp);
+    temp->setName("RollingBall");
 
     ///Textured Objects
 //Use mObjects2!

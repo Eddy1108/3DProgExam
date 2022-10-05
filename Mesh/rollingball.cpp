@@ -9,11 +9,9 @@ RollingBall::RollingBall(int n, Shader& shader, VisualObject* surface) : Octahed
     //Important! shader program name must be given
     mMatrix1.setToIdentity();
 
-    //mPosition.translate(0.0384,0.0384,0.17); // Starter i venstre hjørne
-    //mPosition.translate(0.822, 0.008, 0.08); // Starter i høyre hjørne
-    //mPosition.translate(1.04,1.04, 0.5f);
+
     mPos.setToIdentity();
-    mPos.translate(0.04, 0.04, 120.5f);
+    mPos.translate(0.f, 0.f, 120.5f);
     mScale1.setToIdentity();
     mScale1.scale(mRadius, mRadius, mRadius);
     //mScale.scale(m,0.5f,1.5f);
@@ -31,7 +29,7 @@ RollingBall::~RollingBall()
 }
 void RollingBall::move(float dt)
 {
-    std::cout << "deltaTime:" << dt << std::endl;
+    //std::cout << "deltaTime:" << dt << std::endl;
     int trianglesBallIsWithin{ 0 };
     std::vector<QVector3D> verticesPos = dynamic_cast<LAZSurface*>(mSurface)->getTriangleVertices(getPosition());
 

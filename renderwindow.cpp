@@ -324,12 +324,12 @@ void RenderWindow::keyPressEvent(QKeyEvent* event)
 
     if (event->key() == Qt::Key_C)
     {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        bDrawEquidistance = !bDrawEquidistance;
     }
 
     if (event->key() == Qt::Key_V)
     {
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        bDrawPointCloud = !bDrawPointCloud;
     }
 
     if(event->key() == Qt::Key_A)

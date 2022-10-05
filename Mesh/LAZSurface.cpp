@@ -164,7 +164,8 @@ void LAZSurface::readFile(std::string txtFileName)
     inn.close();
 
     // Read file and store data.
-    // Sort data while storing. X first, then check on Y axis
+    // Sort data while storing. X first, then check on Y 
+    constructEquidistance();
 }
 
 void LAZSurface::init()
@@ -205,13 +206,27 @@ void LAZSurface::init()
 
 void LAZSurface::draw()
 {
-    //if(mEquiLines && drawEquidistanceLines)
-    //    mEquiLines->draw();
+    drawEquidistanceLines = RenderWindow::bDrawEquidistance;
 
-    glBindVertexArray(mVAO);
-    glUniformMatrix4fv(mShader.mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
-    glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, nullptr);
-    glBindVertexArray(0);
+
+    if(mEquiLines && drawEquidistanceLines)
+        mEquiLines->draw();
+
+    if (RenderWindow::bDrawPointCloud)
+    {
+        glBindVertexArray(mVAO);
+        glUniformMatrix4fv(mShader.mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
+        glDrawElements(GL_POINTS, mIndices.size(), GL_UNSIGNED_INT, nullptr);
+        glBindVertexArray(0);
+    }
+    else {
+        glBindVertexArray(mVAO);
+        glUniformMatrix4fv(mShader.mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
+        glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, nullptr);
+        glBindVertexArray(0);
+    }
+
+
 }
 
 

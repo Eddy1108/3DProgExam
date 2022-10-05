@@ -40,7 +40,7 @@ private:
     //float mRadius {0.0175f}; // m
     float mRadius{ 1.0f };
 
-    float timeSlowDown{ 1 };
+    float timeSlowDown{ 20 };
 
     //Debug
     Line* mVelocityLine{ nullptr };

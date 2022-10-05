@@ -4,6 +4,8 @@
 //#include "visualobject.h"
 #include "Core/VisualObject.h"
 
+#include "renderwindow.h"
+
 class Equidistance;
 
 struct Hull {
@@ -32,7 +34,7 @@ public:
     //void triangulate(std::vector<QVector3D>* points);
     static QVector3D calcBarycentric(QVector2D point, QVector2D p1, QVector2D p2, QVector2D p3);
 
-    bool drawEquidistanceLines{ false };
+    bool drawEquidistanceLines{ true };
 
 protected:
     const float mScale{ 1 };
