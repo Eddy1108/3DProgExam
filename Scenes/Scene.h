@@ -34,7 +34,6 @@ public:
 	void DrawAABB(glm::vec3 position, glm::vec3 extent);
 	void PauseObjects();
 
-
 	//Plain Objects
 	std::vector<VisualObject*> mObjects;
 	std::unordered_map<std::string, VisualObject*> mMap;

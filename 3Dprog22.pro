@@ -15,23 +15,27 @@ SOURCES += main.cpp \
     Core/shader.cpp \
     Core/texture.cpp \
     Light/Light.cpp \
+    Light/Sun.cpp \
     Math/Barycentric.cpp \
     Math/BezierCurve.cpp \
+    Math/SortCoords.cpp \
     Mesh/Billboard.cpp \
     Mesh/Disc.cpp \
-    Mesh/Door.cpp \
-    Mesh/Graph.cpp \
+    Mesh/Equidistance.cpp \
     Mesh/Heightmap.cpp \
-    Mesh/House.cpp \
     Mesh/Kube.cpp \
-    Mesh/NPC_Cube.cpp \
+    Mesh/LAZSurface.cpp \
     Mesh/ObjLoader.cpp \
     Mesh/OctahedronBall.cpp \
     Mesh/Player/InteractiveObject.cpp \
+    Mesh/Player/Player.cpp \
+    Mesh/PointCloud.cpp \
     Mesh/SkyBox.cpp \
     Mesh/Triangle.cpp \
     Mesh/TriangleSurface.cpp \
-    Mesh/Trophy.cpp \
+    Mesh/ballspawner.cpp \
+    Mesh/line.cpp \
+    Mesh/rollingball.cpp \
     Scenes/Scene.cpp \
     Scenes/Scene0.cpp \
     Scenes/Scene1.cpp \
@@ -54,23 +58,27 @@ HEADERS += \
     Core/shader.h \
     Core/texture.h \
     Light/Light.h \
+    Light/Sun.h \
     Math/Barycentric.h \
     Math/BezierCurve.h \
+    Math/SortCoords.h \
     Mesh/Billboard.h \
     Mesh/Disc.h \
-    Mesh/Door.h \
-    Mesh/Graph.h \
+    Mesh/Equidistance.h \
     Mesh/Heightmap.h \
-    Mesh/House.h \
     Mesh/Kube.h \
-    Mesh/NPC_Cube.h \
+    Mesh/LAZSurface.h \
     Mesh/ObjLoader.h \
     Mesh/OctahedronBall.h \
     Mesh/Player/InteractiveObject.h \
+    Mesh/Player/Player.h \
+    Mesh/PointCloud.h \
     Mesh/SkyBox.h \
     Mesh/Triangle.h \
     Mesh/TriangleSurface.h \
-    Mesh/Trophy.h \
+    Mesh/ballspawner.h \
+    Mesh/line.h \
+    Mesh/rollingball.h \
     Scenes/Scene.h \
     Scenes/Scene0.h \
     Scenes/Scene1.h \

@@ -2,7 +2,7 @@
 #include <iomanip> //for std::setprecision
 #include "equidistance.h"
 
-LAZSurface::LAZSurface(const std::string txtFileName, const QVector2D gridSize, Shader& shader, const QVector3D offset, const float scale) : mScale(scale), mOffset(offset), mGridSizeX(gridSize.x()), mGridSizeY(gridSize.y()), VisualObject(shader)
+LAZSurface::LAZSurface(const std::string txtFileName, PointCloud* cloud, const QVector2D gridSize, Shader& shader, const QVector3D offset, const float scale) : mScale(scale), mCloud(cloud), mOffset(offset), mGridSizeX(gridSize.x()), mGridSizeY(gridSize.y()), VisualObject(shader)
 {
     construct(txtFileName);
     mMatrix = glm::mat4(1.f);
@@ -45,7 +45,10 @@ void LAZSurface::readFile(std::string txtFileName)
         {
             float x,y,z;
             inn >> x >> y >> z;
-            points.push_back(QVector3D(x + mOffset.x(), y + mOffset.y(), z + mOffset.z()));
+            QVector3D pos(x + mOffset.x(), y + mOffset.y(), z + mOffset.z());
+
+            points.push_back(pos);
+            mCloud->mVertices.push_back(Vertex(pos.x(), pos.y(), pos.z() + 30, 1,1,1));
 
             //Initializes x and y min/max
             if(i == 0){
@@ -239,6 +242,10 @@ void LAZSurface::addToAverageHeight(int xIndex, int yIndex, float height)
 
 float LAZSurface::getAverageHeight(int x, int y)
 {
+    // If no points exists within the area, return 0 as height for the area
+    if(mHeightInArea.at(x).at(y).iteration == 0) return 0;
+
+    // If one or more points exists within the area, return average height in area
     return (mHeightInArea.at(x).at(y).height / mHeightInArea.at(x).at(y).iteration);
 }
 
@@ -250,6 +257,7 @@ Equidistance* LAZSurface::constructEquidistance()
         return mEquiLines;
     }
 
+    QVector3D offset(0, 0, 0.001);
     mEquiLines = new Equidistance(mShader);
     drawEquidistanceLines = true;
     // Do a check for each triangle (double for loop)
@@ -283,7 +291,7 @@ Equidistance* LAZSurface::constructEquidistance()
         float maxHeight = abc[2]->getXYZ().z;
 
         //Check if triangle lays flat on the equidistance, if so don't add lines and return
-        if(fmod(minHeight, mEquidistance) == 0 && maxHeight == minHeight ) return mEquiLines; // Could potentially alter the color the entire square before returning
+        if(fmod(minHeight, mEquidistance) == 0 && maxHeight == minHeight ) continue; // Could potentially alter the color the entire square before returning
 
 
         // Checks if there should be a line drawn at the bottom of the triangle
@@ -371,49 +379,48 @@ std::vector<QVector3D> LAZSurface::getTriangleVertices(QVector3D pos)
         float yInc = (yMax - yMin)/(mGridSizeY);
 
         // Find which square are the ball is within
-        for(int y = 0; y < mGridSizeY; y++){
-            for(int x = 0; x < mGridSizeX; x++){
-                if(xMin + x * xInc <= pos.x() && xMin + (x+1) * xInc > pos.x() &&
-                   yMin + y * yInc <= pos.y() && yMin + (y+1) * yInc > pos.y())
+        for (int y = 0; y < mGridSizeY - 1; y++) {
+            for (int x = 0; x < mGridSizeX - 1; x++) {
+                if (xMin + x * xInc <= pos.x() && xMin + (x + 1) * xInc > pos.x() &&
+                    yMin + y * yInc <= pos.y() && yMin + (y + 1) * yInc > pos.y())
                 {
                     // Square found
                     // Use BarycentricCoordinates to find out which square
-                    int v0 = x + y*mGridSizeX;
-                    int v1 = x+1 + y*mGridSizeX;
-                    int v2 = x+1 + (y+1)*mGridSizeX;
-                    int v3 = x + (y+1)*mGridSizeX;
+                    int i0 = x + y * mGridSizeX;
+                    int i1 = x + 1 + y * mGridSizeX;
+                    int i2 = x + 1 + (y + 1) * mGridSizeX;
+                    int i3 = x + (y + 1) * mGridSizeX;
 
                     QVector3D barycResult;
-                    barycResult = calcBarycentric(pos.toVector2D(), mVertices[v0].getPos().toVector2D(), mVertices[v1].getPos().toVector2D(), mVertices[v2].getPos().toVector2D());
+                    barycResult = calcBarycentric(pos.toVector2D(), mVertices[i0].getPos().toVector2D(), mVertices[i1].getPos().toVector2D(), mVertices[i2].getPos().toVector2D());
 
                     //Checks the first triangle if the ball is within on the x and y axis
                     if (barycResult.x() + barycResult.y() + barycResult.z() >= 0.99999 && barycResult.x() + barycResult.y() + barycResult.z() <= 1.00001)
                     {
                         std::vector<QVector3D> result;
-                        result.push_back(mVertices[v0].getPos());
-                        result.push_back(mVertices[v1].getPos());
-                        result.push_back(mVertices[v2].getPos());
+                        result.push_back(mVertices[i0].getPos());
+                        result.push_back(mVertices[i1].getPos());
+                        result.push_back(mVertices[i2].getPos());
                         return result;
                     }
 
                     //Checks the second triangle
-                    barycResult = calcBarycentric(pos.toVector2D(), mVertices[v0].getPos().toVector2D(), mVertices[v1].getPos().toVector2D(), mVertices[v2].getPos().toVector2D());
-                    if(barycResult.x() + barycResult.y() + barycResult.z() >= 0.99999 && barycResult.x() + barycResult.y() + barycResult.z() <= 1.00001)
+                    barycResult = calcBarycentric(pos.toVector2D(), mVertices[i0].getPos().toVector2D(), mVertices[i1].getPos().toVector2D(), mVertices[i2].getPos().toVector2D());
+                    if (barycResult.x() + barycResult.y() + barycResult.z() >= 0.99999 && barycResult.x() + barycResult.y() + barycResult.z() <= 1.00001)
                     {
                         std::vector<QVector3D> result;
-                        result.push_back(mVertices[v0].getPos());
-                        result.push_back(mVertices[v1].getPos());
-                        result.push_back(mVertices[v2].getPos());
+                        result.push_back(mVertices[i0].getPos());
+                        result.push_back(mVertices[i2].getPos());
+                        result.push_back(mVertices[i3].getPos());
                         return result;
                     }
-                    else {std::cout << "Error! Something went wrong in LAZSurface, when calculating Barycentric coordinates, in getTriangleVertices"; }
-
+                    else { std::cout << "Error! Something went wrong in LAZSurface, when calculating Barycentric coordinates, in getTriangleVertices"; }
                 }
             }
         }
     }
 
-    std::cout << "Error! No triangle found, when searching in LAZSurface" << std::endl;
+    //std::cout << "Error! No triangle found, when searching in LAZSurface" << std::endl;
     std::vector<QVector3D> result;
     //Returns empty if no triangle was found
     return result;

@@ -22,6 +22,7 @@
 #include "Mesh/PointCloud.h"
 #include "Mesh/LAZSurface.h"
 #include "Mesh/rollingball.h"
+#include "Mesh/ballspawner.h"
 
 class Scene0 : public Scene
 {
@@ -32,5 +33,9 @@ public:
 
 	void init() override;
 	void draw() override;
+
+	PointCloud* mCloud{ nullptr };
+	static void SpawnMoreBalls(int amount);
+	static inline BallSpawner* mBallSpawner{ nullptr };
 };
 

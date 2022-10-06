@@ -7,6 +7,8 @@
 #include "renderwindow.h"
 #include "logger.h"
 
+#include "Scenes/Scene0.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -85,5 +87,30 @@ void MainWindow::on_rotationButton_toggled(bool checked)
 void MainWindow::on_fileExit_triggered()
 {
     close();       //Shuts down the whole program
+}
+
+
+void MainWindow::on_pushButton_2_toggled(bool checked)
+{
+    RenderWindow::bDrawEquidistance = !RenderWindow::bDrawEquidistance;
+}
+
+
+void MainWindow::on_pushButton_toggled(bool checked)
+{
+    RenderWindow::bDrawPointCloud = !RenderWindow::bDrawPointCloud;
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    Scene0::SpawnMoreBalls(10);
+}
+
+
+void MainWindow::on_pushButton_4_toggled(bool checked)
+{
+    RenderWindow::bDrawRealPointCloud = !RenderWindow::bDrawRealPointCloud;
+    std::cout << "POINT CLOUD TOGGLE" << std::endl;
 }
 

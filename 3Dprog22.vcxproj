@@ -191,6 +191,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Math\SortCoords.cpp" />
+    <ClCompile Include="Mesh\ballspawner.cpp" />
     <ClCompile Include="Mesh\Equidistance.cpp" />
     <ClCompile Include="Math\Barycentric.cpp" />
     <ClCompile Include="Math\BezierCurve.cpp" />
@@ -235,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\SortCoords.h" />
+    <ClInclude Include="Mesh\ballspawner.h" />
     <ClInclude Include="Mesh\Equidistance.h" />
     <ClInclude Include="Mesh\Fence.h" />
     <ClInclude Include="Mesh\Enemy.h" />

@@ -11,7 +11,7 @@ class LAZSurface;
 class RollingBall : public OctahedronBall
 {
 public:
-    RollingBall(int n, Shader& shader, VisualObject* surface);
+    RollingBall(int n, QVector3D startPos, Shader& shader, VisualObject* surface);
     ~RollingBall() override;
     void init() override;
     void draw() override;
@@ -38,7 +38,7 @@ private:
     float mGroundFriction = 0.1f; // drag is not affected by surface area, but instead a constant force
     float mMass{ 0.0175f }; //kg
     //float mRadius {0.0175f}; // m
-    float mRadius{ 1.0f };
+    float mRadius{ 2.0f };
 
     float timeSlowDown{ 20 };
 

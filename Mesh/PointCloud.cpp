@@ -3,6 +3,8 @@
 #include "Math/SortCoords.h"
 #include <iomanip>
 
+#include "renderwindow.h"
+
 PointCloud::PointCloud(Shader& shader) : VisualObject{shader}
 {
 	mName = "PointCloud";
@@ -22,41 +24,39 @@ void PointCloud::init()
 	std::ifstream file;
 
 	//Open file
-	file.open("Surface/GlitterholetShortened.txt");
-	//file.open("Surface/test.txt");
-	//file.open("Surface/rindal.txt");
+	//file.open("Surface/GlitterholetShortened.txt");
+	////file.open("Surface/test.txt");
+	////file.open("Surface/rindal.txt");
 
-	if (!file)
-	{
-		std::cout << "\n\nERROR SURFACE FILE NOT FOUND\n\n";
-			return;
-	}
+	//if (!file)
+	//{
+	//	std::cout << "\n\nERROR SURFACE FILE NOT FOUND\n\n";
+	//		return;
+	//}
 
-	long double x{ 0 };
-	long double y{ 0 };
-	long double z{ 0 };
-	int size{ 0 };
-	file >> size;
-	//std::cout << "\nSIZE: " << size << std::endl;
+	//long double x{ 0 };
+	//long double y{ 0 };
+	//long double z{ 0 };
+	//int size{ 0 };
+	//file >> size;
 
-	Vertex vertex;
+	//Vertex vertex;
 
-	for (int i = 0; i < size; i++)
-	{
-		file >> x >> y >> z;
-		//std::cout << "\nCoords: " << x << ", " << y << ", " << z << std::endl;
-		vertex.m_xyz[0] = (x - mOffsetX) * mScaleMultiplyX;
-		vertex.m_xyz[1] = (y - mOffsetY) * mScaleMultiplyY;
-		vertex.m_xyz[2] = (z - mOffsetZ) * mScaleMultiplyZ;
+	//for (int i = 0; i < size; i++)
+	//{
+	//	file >> x >> y >> z;
+	//	vertex.m_xyz[0] = (x - mOffsetX) * mScaleMultiplyX;
+	//	vertex.m_xyz[1] = (y - mOffsetY) * mScaleMultiplyY;
+	//	vertex.m_xyz[2] = (z - mOffsetZ) * mScaleMultiplyZ;
 
-		vertex.m_normal[0] = 1; vertex.m_normal[1] = 1; vertex.m_normal[2] = 1;
-		vertex.m_uv[0] = 0; vertex.m_uv[1] = 1;
+	//	vertex.m_normal[0] = 1; vertex.m_normal[1] = 1; vertex.m_normal[2] = 1;
+	//	vertex.m_uv[0] = 0; vertex.m_uv[1] = 1;
 
-		//std::cout << "\nNew Coords: " << vertex.m_xyz[0] << ", " << vertex.m_xyz[1] << ", " << vertex.m_xyz[2] << std::endl;
+	//	//std::cout << "\nNew Coords: " << vertex.m_xyz[0] << ", " << vertex.m_xyz[1] << ", " << vertex.m_xyz[2] << std::endl;
 
-		mVertices.push_back(vertex);
-	}
-	file.close();
+	//	mVertices.push_back(vertex);
+	//}
+	//file.close();
 
 	///Dont need to sort
 	//SortCoords::SortX(mVertices);
@@ -99,10 +99,13 @@ void PointCloud::init()
 void PointCloud::draw()
 {
 	//Enable for different size, anything over 20 is too big
-	//glPointSize(30);
+	//glPointSize(20);
 
-	glBindVertexArray(mVAO);
-	glUniformMatrix4fv(mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
-	glDrawArrays(GL_POINTS, 0, mVertices.size());
-	glBindVertexArray(0);
+	if (RenderWindow::bDrawRealPointCloud)
+	{
+		glBindVertexArray(mVAO);
+		glUniformMatrix4fv(mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mMatrix));
+		glDrawArrays(GL_POINTS, 0, mVertices.size());
+		glBindVertexArray(0);
+	}
 }

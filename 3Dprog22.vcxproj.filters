@@ -173,6 +173,9 @@
     <ClCompile Include="Math\SortCoords.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh\ballspawner.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Barycentric.h">
@@ -320,6 +323,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Math\SortCoords.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh\ballspawner.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

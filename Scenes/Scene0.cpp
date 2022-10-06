@@ -19,15 +19,21 @@ Scene0::Scene0(std::unordered_map<std::string, Shader*> shaders)
     mObjects.push_back(mLight);
     mLight->setName("Sun");
 
-    //mObjects.push_back(new PointCloud(*mShaderPrograms["plain"]));
+    mCloud = new PointCloud(*mShaderPrograms["plain"]);
+    mObjects.push_back(mCloud);
 
-    LAZSurface* surface = new LAZSurface("../3DProgExam/Surface/GlitterholetShortened.txt", QVector2D(600,300), *mShaderPrograms["plain"], QVector3D(-473213.f - 1110 / 2, -6835647.f - 2110 / 2, -1734.f));
+    LAZSurface* surface = new LAZSurface("../3DProgExam/Surface/GlitterholetShortened.txt", mCloud, QVector2D(600,300), *mShaderPrograms["plain"], QVector3D(-473213.f - 1110 / 2, -6835647.f - 2110 / 2, -1734.f));
     mObjects.push_back(surface);
     surface->setName("LAZSurface");
 
-    temp = new RollingBall(3, *mShaderPrograms["plain"], surface);
+    temp = new RollingBall(3, QVector3D(0,0, 100), *mShaderPrograms["plain"], surface);
     mObjects.push_back(temp);
     temp->setName("RollingBall");
+
+    mBallSpawner = new BallSpawner(*mShaderPrograms["plain"], surface);
+    mObjects.push_back(mBallSpawner);
+    mBallSpawner->setName("BallSpawner");
+    
 
     ///Textured Objects
 //Use mObjects2!
@@ -95,4 +101,9 @@ void Scene0::draw()
 {
     Scene::draw();
 
+}
+
+void Scene0::SpawnMoreBalls(int amount)
+{
+    mBallSpawner->SpawnBalls(amount);
 }

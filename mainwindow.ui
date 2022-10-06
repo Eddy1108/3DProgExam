@@ -14,22 +14,132 @@
    <string>OpenGL in Qt is great fun!</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QPushButton" name="rotationButton">
-      <property name="text">
-       <string>Stop rotation</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
      <layout class="QVBoxLayout" name="OpenGLLayout"/>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>GroupBox</string>
+      </property>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>180</y>
+         <width>281</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Spawn 10 Random Balls</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>210</y>
+         <width>281</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Toggle Surface Points</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>240</y>
+         <width>281</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Toggle Equidistance</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>270</y>
+         <width>281</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Toggle PointCloud</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="plainTextEdit">
+       <property name="geometry">
+        <rect>
+         <x>23</x>
+         <y>339</y>
+         <width>261</width>
+         <height>351</height>
+        </rect>
+       </property>
+       <property name="plainText">
+        <string>Controlls:
+WASD to move
+E and Q to go up and down
+
+Press the buttons above to toggle between them
+
+Spawning too many balls at once can cause the program to crash
+
+NOTE:
+Toggle Surface Points is NOT a point cloud</string>
+       </property>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -39,7 +149,7 @@
      <x>0</x>
      <y>0</y>
      <width>1401</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
